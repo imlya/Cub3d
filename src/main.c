@@ -6,7 +6,7 @@
 /*   By: imatek <imatek@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 11:37:31 by imatek            #+#    #+#             */
-/*   Updated: 2025/03/10 12:14:24 by imatek           ###   ########.fr       */
+/*   Updated: 2025/03/10 14:50:16 by imatek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int main()
     t_data data;
     
     ft_init_mlx(&data);
+	// free_all(&data);
     mlx_loop(data.mlx);
     return (0);
 }

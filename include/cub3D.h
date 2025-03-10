@@ -6,7 +6,7 @@
 /*   By: imatek <imatek@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 14:02:07 by magrabko          #+#    #+#             */
-/*   Updated: 2025/03/10 12:23:27 by imatek           ###   ########.fr       */
+/*   Updated: 2025/03/10 14:47:29 by imatek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,9 @@
 # include <stdlib.h>
 # include <string.h>
 # include <unistd.h>
+
+void	ft_init_mlx(t_data *data);
+void	init_data(t_data *data);
+void	free_all(t_data *data);
 
 #endif
