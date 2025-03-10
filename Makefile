@@ -1,36 +1,87 @@
-NAME= cub3d
-SRC=
-OBJS= $(SRC:.c=.o)
-CC= cc
-CFLAGS= -Wall -Wextra -Werror
-LIBFT= ./libft/libft.a
-MLX= ./minilibx-linux/libmlx_Linux.a -lXext -lX11 -lm -g
-GCL= git clone
-MlX_URL= https://github.com/42Paris/minilibx-linux.git
+NAME=			cub3D
 
-all: minilibx-linux $(NAME)
+CFLAGS= 		-Wall -Wextra -Werror -g3
+INCLD=  		-I ./include/ -I ./minilibx-linux/
 
-minilibx-linux:
-	$(GCL) $(MLX_URL)
-	make -C $@
+CYAN=                           \033[1;36m
+GREEN=                          \033[1;32m
+RESET=                          \033[0m
 
-$(NAME) : $(LIBFT) $(OBJS) minilibx-linux/libmlx_Linux.a
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LIBFT) $(MLX)
+SRC_PATH= 		src
+SRC_FILES=		main.c mlx.c
 
-%.o: %.c 
-	$(CC) $(FLAGS) -c $< -o $@
+PARS_PATH=		src/parsing
+PARS_FILES=		
+
+EXEC_PATH=		
+EXEC_FILES=
+
+LIBFT_PATH=    	./libft
+MLX_PATH=		./minilibx-linux
+
+LIBFT_FLAGS=	-L$(LIBFT_PATH) -lft
+MLX_FLAGS =		-L$(MLX_PATH) -lmlx -lXext -lX11
+
+LIBFT=        	$(LIBFT_PATH)/libft.a
+MLX= 			$(MLX_PATH)/libmlx_Linux.a 
+GCL= 			git clone
+MLX_URL= 		https://github.com/42Paris/minilibx-linux.git
+
+SRC=			$(SRC_PATH)/$(SRC_FILES)	\
+				$(PARS_PATH)/$(PARS_FILES)	\
+				$(EXEC_PATH)/$(EXEC_FILES)	\
+
+OBJ_PATH= 		obj
+OBJ= 			$(addprefix $(OBJ_PATH)/, $(notdir $(SRC:.c=.o)))
+
+NOPRINT=		--no-print-directory
+
+all: $(MLX_PATH) $(LIBFT) $(NAME)
+
+$(OBJ_PATH):
+	@mkdir $(OBJ_PATH)
+
+$(OBJ_PATH)/%.o: $(SRC_PATH)/%.c | $(OBJ_PATH)
+	@$(CC) $(CFLAGS) $(INCLD) -c $< -o $@
+
+$(OBJ_PATH)/%.o: $(PARS_PATH)/%.c | $(OBJ_PATH)
+	@$(CC) $(CFLAGS) $(INCLD) -c $< -o $@
+
+$(OBJ_PATH)/%.o: $(EXEC_PATH)/%.c | $(OBJ_PATH)
+	@$(CC) $(CFLAGS) $(INCLD) -c $< -o $@
+
+$(MLX_PATH):
+	@$(GCL) $(MLX_URL) > /dev/null 2>&1
+	@$(MAKE) -C $@ > /dev/null 2>&1
+
+$(MLX):
+	@$(MAKE) -C $(MLX_PATH) > /dev/null 2>&1
 
 $(LIBFT):
-	make -C libft
+	@$(MAKE) -C $(LIBFT_PATH) > /dev/null 2>&1
+
+$(NAME): $(OBJ) $(MLX) $(LIBFT)
+	@$(CC) $(OBJ) -o $(NAME) $(MLX_FLAGS) $(LIBFT_FLAGS)
+	@printf "\n${CYAN}"
+	@printf "  ░█▀▀░█░█░█▀▄░▀▀█░█▀▄\n"
+	@printf "  ░█░░░█░█░█▀▄░░▀▄░█░█\n"
+	@printf "  ░▀▀▀░▀▀▀░▀▀░░▀▀░░▀▀░\n"
+	@printf "\n\n${RESET}"
 
 clean:
-	rm -f $(OBJS)
-	make -C libft clean
+	@rm -rf $(OBJ_PATH)
+	@$(MAKE) -C $(LIBFT_PATH) clean > /dev/null
+	@$(MAKE) -C $(MLX_PATH) clean > /dev/null
+	@printf "\n\n${GREEN}"
+	@printf "  ░█▀▀░█░░░█▀▀░█▀█░█▀█░█░█░█▀█░░█\n"
+	@printf "  ░█░░░█░░░█▀▀░█▀█░█░█░█░█░█▀▀░░▀\n"
+	@printf "  ░▀▀▀░▀▀▀░▀▀▀░▀░▀░▀░▀░▀▀▀░▀░░░░▀\n"
+	@printf "\n\n${RESET}"
 
 fclean: clean
-	rm -f $(NAME)
-	rm -rf minilibx-linux
-	make -C libft fclean
+	@rm -rf $(NAME)
+	@rm -rf $(MLX_PATH)
+	@$(MAKE) -C $(LIBFT_PATH) fclean > /dev/null
 
 re: fclean all
 
