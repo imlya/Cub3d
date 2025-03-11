@@ -8,13 +8,13 @@ GREEN=                          \033[1;32m
 RESET=                          \033[0m
 
 SRC_PATH= 		src
-SRC_FILES=		main.c  mlx.c cleanup.c
+SRC_FILES=		main.c  mlx.c 
 
 PARS_PATH=		src/parsing
-# PARS_FILES=		checks.c checks_utils.c init.c manager.c map_utils.c pars_utils.c
+PARS_FILES=		init.c
 
 EXEC_PATH=		src/exec
-EXEC_FILES=
+EXEC_FILES=		exec.c
 
 LIBFT_PATH=    	./libft
 MLX_PATH=		./minilibx-linux

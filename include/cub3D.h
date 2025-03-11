@@ -6,7 +6,7 @@
 /*   By: imatek <imatek@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 14:02:07 by magrabko          #+#    #+#             */
-/*   Updated: 2025/03/10 14:47:29 by imatek           ###   ########.fr       */
+/*   Updated: 2025/03/11 12:55:18 by imatek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,20 @@
 # include <string.h>
 # include <unistd.h>
 
-void	ft_init_mlx(t_data *data);
-void	init_data(t_data *data);
-void	free_all(t_data *data);
+/*******************************************
+*                   MLX                    *        
+********************************************/
+void	ft_init_mlx(t_data *data, t_img *image);
+void	init_data(t_data *data, t_player *player);
+void	ft_put_pixel(t_img *image, int x, int y, int color);
+
+/*******************************************
+*                  EXEC                    *        
+********************************************/
+void	ft_ray_direction(t_player *player);
+
+/*******************************************
+*                PARSING                   *        
+********************************************/
 
 #endif
