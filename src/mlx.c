@@ -6,7 +6,7 @@
 /*   By: imatek <imatek@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 11:21:47 by imatek            #+#    #+#             */
-/*   Updated: 2025/03/11 12:45:45 by imatek           ###   ########.fr       */
+/*   Updated: 2025/03/12 20:54:07 by imatek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,17 +37,17 @@ int	ft_keyboard(int keysym, t_data *data, t_player *player)
 	if (keysym == XK_Escape)
 		ft_destroy(data);
 	if (keysym == 119)
-		player->y -= (0.5);
+		player->pos_y -= (0.5);
 	else if (keysym == 115)
-		player->y += (0.5);
+		player->pos_y += (0.5);
 	else if (keysym == 97)
-		player->x -= (0.5);
+		player->pos_x -= (0.5);
 	else if (keysym == 100)
-		player->x += (0.5);
+		player->pos_x += (0.5);
 	else if (keysym == XK_Right)
-		player->x -= (0.5);
+		player->pos_x -= (0.5);
 	else if (keysym == XK_Left)
-		player->x += (0.5);
+		player->pos_x += (0.5);
 	return (0);
 }
 
@@ -60,8 +60,6 @@ void	ft_events_mlx(t_data *data)
 
 void	ft_init_mlx(t_data *data, t_img *image)
 {
-	t_player	player;
-
 	data->mlx = mlx_init();
 	if (!data->mlx)
 	{
@@ -83,7 +81,7 @@ void	ft_init_mlx(t_data *data, t_img *image)
 	image->pixels = mlx_get_data_addr(data->image, &image->bpp,
 			&image->line_len, &image->endian);
 	ft_events_mlx(data);
-	init_data(data, &player);
+	init_data(data);
 }
 
 // mlx_xpm_file_to_image: Converts an XPM file to an MLX image pointer.

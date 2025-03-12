@@ -8,10 +8,11 @@ GREEN=                          \033[1;32m
 RESET=                          \033[0m
 
 SRC_PATH= 		src
-SRC_FILES=		main.c  mlx.c 
+SRC_FILES=		main.c  mlx.c cleanup.c
 
 PARS_PATH=		src/parsing
-PARS_FILES=		init.c
+PARS_FILES=		init.c 
+				# checks.c checks_utils.c elements.c manager.c map_utils.c pars_utils.c
 
 EXEC_PATH=		src/exec
 EXEC_FILES=		exec.c
