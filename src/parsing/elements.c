@@ -6,12 +6,11 @@
 /*   By: imatek <imatek@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 21:32:36 by imatek            #+#    #+#             */
-/*   Updated: 2025/03/12 21:33:13 by imatek           ###   ########.fr       */
+/*   Updated: 2025/03/13 11:43:34 by imatek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
-
 
 static int	set_rgb(t_data *data, char *info, char c)
 {

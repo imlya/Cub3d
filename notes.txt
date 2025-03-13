@@ -1,6 +1,0 @@
-étapes pour ajouter des assets avec MiniLibX :
-1. Préparer asset (XPM)	Convertir ton image en format XPM
-2. Charger asset avec mlx_xpm_file	Charger la texture XPM en mémoire
-3. Accéder aux pixels	Récupérer les pixels avec mlx_get_data_addr
-4. Calculer position texture	Trouver quelle colonne/ligne afficher
-5. Afficher colonne via my_mlx_pixel_put	Dessiner la bonne partie de la texture

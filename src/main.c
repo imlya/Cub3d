@@ -6,7 +6,7 @@
 /*   By: imatek <imatek@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 11:37:31 by imatek            #+#    #+#             */
-/*   Updated: 2025/03/12 21:31:41 by imatek           ###   ########.fr       */
+/*   Updated: 2025/03/13 11:46:05 by imatek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,10 @@
 // 	printf("player y = [%d]\n", data->player_y);
 // 	printf("width = [%d]\n", WIDTH);
 // 	printf("height = [%d]\n", HEIGHT);
-// 	printf("floor color = [%d][%d][%d]\n", data->f_color[0], data->f_color[1], data->f_color[2]);
-// 	printf("ceiling color = [%d][%d][%d]\n", data->c_color[0], data->c_color[1], data->c_color[2]);
+// 	printf("floor color = [%d][%d][%d]\n", data->f_color[0], data->f_color[1],
+		// data->f_color[2]);
+// 	printf("ceiling color = [%d][%d][%d]\n", data->c_color[0], data->c_color[1],
+		// data->c_color[2]);
 // 	printf("facing = [%c]\n", data->facing);
 // 	printf("north = [%s]\n", data->north);
 // 	printf("south = [%s]\n", data->south);
@@ -31,15 +33,15 @@
 // 		printf("[%s]\n", data->map[i++]);
 // }
 
-int main()
+int	main(void)
 {
-    t_data data;
-    t_img image;
-    
-    ft_init_mlx(&data, &image);
-    // check_input(&data, argc, argv[1]);
+	t_data	data;
+	t_img	image;
+
+	ft_init_mlx(&data, &image);
+	// check_input(&data, argc, argv[1]);
 	// print_all(&data);
 	free_all(&data);
-    mlx_loop(data.mlx);
-    return (0);
+	mlx_loop(data.mlx);
+	return (0);
 }

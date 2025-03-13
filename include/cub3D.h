@@ -6,7 +6,7 @@
 /*   By: imatek <imatek@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 14:02:07 by magrabko          #+#    #+#             */
-/*   Updated: 2025/03/12 21:11:10 by imatek           ###   ########.fr       */
+/*   Updated: 2025/03/13 11:43:06 by imatek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 
 # include "../libft/libft.h"
 # include "../minilibx-linux/mlx.h"
-# include <X11/X.h>
-# include <X11/keysym.h>
 # include "parsing.h"
 # include "structures.h"
+# include <X11/X.h>
+# include <X11/keysym.h>
 # include <errno.h>
 # include <fcntl.h>
 # include <math.h>
@@ -29,14 +29,14 @@
 # include <unistd.h>
 
 /*******************************************
-*                   MLX                    *        
-********************************************/
+ *                   MLX                    *
+ ********************************************/
 void	ft_init_mlx(t_data *data, t_img *image);
 void	ft_put_pixel(t_img *image, int x, int y, int color);
 
 /*******************************************
-*                  EXEC                    *        
-********************************************/
+ *                  EXEC                    *
+ ********************************************/
 void	ft_ray_direction(t_player *player);
 
 // /* TEMPORAIRE -> TESTS */

@@ -6,19 +6,11 @@
 /*   By: imatek <imatek@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 11:21:47 by imatek            #+#    #+#             */
-/*   Updated: 2025/03/12 20:54:07 by imatek           ###   ########.fr       */
+/*   Updated: 2025/03/13 11:42:55 by imatek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
-
-void	ft_put_pixel(t_img *image, int x, int y, int color)
-{
-	int	dest;
-
-	dest = (y * image->line_len) + (x * (image->bpp / 8));
-	*(unsigned int *)(dest + image->pixels) = color;
-}
 
 int	ft_destroy(t_data *data)
 {

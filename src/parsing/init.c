@@ -6,7 +6,7 @@
 /*   By: imatek <imatek@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 16:06:24 by magrabko          #+#    #+#             */
-/*   Updated: 2025/03/12 21:36:39 by imatek           ###   ########.fr       */
+/*   Updated: 2025/03/13 11:43:37 by imatek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ void	init_player(t_player *player)
 
 void	init_data(t_data *data)
 {
-	t_player player;
-	
+	t_player	player;
+
 	init_player(&player);
 	// data->width = 0;
 	// data->height = 0;

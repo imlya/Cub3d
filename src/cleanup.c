@@ -6,7 +6,7 @@
 /*   By: imatek <imatek@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 16:20:26 by magrabko          #+#    #+#             */
-/*   Updated: 2025/03/10 14:46:04 by imatek           ###   ########.fr       */
+/*   Updated: 2025/03/13 11:43:49 by imatek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ void	free_all(t_data *data)
 		free_temp(data);
 	if (data->map != NULL)
 		free_tab(&data->map);
-/* 	if (data->sprite != NULL)
-		; */
+	/* 	if (data->sprite != NULL)
+			; */
 }
-
