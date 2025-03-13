@@ -6,7 +6,7 @@
 /*   By: imatek <imatek@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 11:21:47 by imatek            #+#    #+#             */
-/*   Updated: 2025/03/13 11:42:55 by imatek           ###   ########.fr       */
+/*   Updated: 2025/03/13 14:52:08 by imatek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ void	ft_init_mlx(t_data *data, t_img *image)
 	}
 	image->pixels = mlx_get_data_addr(data->image, &image->bpp,
 			&image->line_len, &image->endian);
+	mlx_put_image_to_window(data->mlx, data->window, data->image, 0, 0);
 	ft_events_mlx(data);
 	init_data(data);
 }

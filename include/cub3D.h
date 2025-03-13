@@ -6,7 +6,7 @@
 /*   By: imatek <imatek@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 14:02:07 by magrabko          #+#    #+#             */
-/*   Updated: 2025/03/13 11:43:06 by imatek           ###   ########.fr       */
+/*   Updated: 2025/03/13 14:50:37 by imatek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,14 @@
 # include <string.h>
 # include <unistd.h>
 
+# define RED_INT 0xFF0000
+
 /*******************************************
  *                   MLX                    *
  ********************************************/
 void	ft_init_mlx(t_data *data, t_img *image);
 void	ft_put_pixel(t_img *image, int x, int y, int color);
+void	ft_draw_player(t_img *image, int x, int y, int size, int color);
 
 /*******************************************
  *                  EXEC                    *
