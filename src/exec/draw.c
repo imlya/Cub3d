@@ -6,7 +6,7 @@
 /*   By: imatek <imatek@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 11:42:30 by imatek            #+#    #+#             */
-/*   Updated: 2025/03/13 14:49:59 by imatek           ###   ########.fr       */
+/*   Updated: 2025/03/17 16:35:28 by imatek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	ft_draw_player(t_img *image, int x, int y, int size, int color)
 	int	i;
 
 	i = 0;
-	while (i < size)
+	while (i <= size)
 	{
 		ft_put_pixel(image, x + i, y, color);
 		ft_put_pixel(image, x, y + i, color);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: imatek <imatek@student.42.fr>              +#+  +:+       +#+        */
+/*   By: magrabko <magrabko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 14:17:48 by magrabko          #+#    #+#             */
-/*   Updated: 2025/03/13 11:46:15 by imatek           ###   ########.fr       */
+/*   Updated: 2025/02/18 16:18:04 by magrabko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@
 # define ALL_SPACES " \t\n\v\f\r"
 # define ARGC_MSG "Error: try ./cub3D map.cub\n"
 # define ERR_EXT_MSG "Error: wrong file extension, use a .cub file.\n"
-# define ERR_ELEM_MSG "Error: invalid element in file.\nEnsure the format is correct:\n\
+# define ERR_ELEM_MSG \
+	"Error: invalid element in file.\nEnsure the format is correct:\n\
 - NO, SO, WE, EA followed by a valid path.\n\
 - Floor (F) and Ceiling (C) colors must be in R,G,B format (0-255).\n"
 # define ERR_WALL_MSG "Error: map must be surrounded by walls (1).\n"

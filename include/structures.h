@@ -6,7 +6,7 @@
 /*   By: imatek <imatek@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 11:23:59 by imatek            #+#    #+#             */
-/*   Updated: 2025/03/13 11:09:22 by imatek           ###   ########.fr       */
+/*   Updated: 2025/03/17 16:25:52 by imatek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,19 +58,19 @@ typedef struct s_data
 	void		*window;
 	t_img		*image;
 	t_player	*player;
-	// int			width;
-	// int			height;
+	int			width;
+	int			height;
 	// int			max_x;
 	// int			max_y;
 	// int			img_x;
 	// int			img_y;
-	// int			*f_color;
-	// int			*c_color;
-	// char		facing;
-	// char		*north;
-	// char		*south;
-	// char		*west;
-	// char		*east;
+	int			*f_color;
+	int			*c_color;
+	char		facing;
+	char		*north;
+	char		*south;
+	char		*west;
+	char		*east;
 	// t_sprite	*sprite;
 	char		**map;
 	t_temp		*temp;

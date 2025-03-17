@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checks.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: magrabko <magrabko@student.42.fr>          +#+  +:+       +#+        */
+/*   By: imatek <imatek@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 17:11:08 by magrabko          #+#    #+#             */
-/*   Updated: 2025/02/18 16:23:09 by magrabko         ###   ########.fr       */
+/*   Updated: 2025/03/17 16:28:02 by imatek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ static int	check_map_items(t_data *data, char item, int i, int j)
 {
 	if (search_c_set(item, "NSEW"))
 	{
-		data->player_x = j;
-		data->player_y = i;
+		data->player->pos_x = j;
+		data->player->pos_y = i;
 		if (!data->facing)
 			data->facing = item;
 		else

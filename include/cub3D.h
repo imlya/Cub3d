@@ -6,7 +6,7 @@
 /*   By: imatek <imatek@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 14:02:07 by magrabko          #+#    #+#             */
-/*   Updated: 2025/03/13 14:50:37 by imatek           ###   ########.fr       */
+/*   Updated: 2025/03/17 16:34:00 by imatek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,5 +43,5 @@ void	ft_draw_player(t_img *image, int x, int y, int size, int color);
 void	ft_ray_direction(t_player *player);
 
 // /* TEMPORAIRE -> TESTS */
-// void	print_all(t_data *data);
+void	print_all(t_data *data);
 #endif
