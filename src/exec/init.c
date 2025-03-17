@@ -6,7 +6,7 @@
 /*   By: imatek <imatek@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 16:06:24 by magrabko          #+#    #+#             */
-/*   Updated: 2025/03/17 16:34:23 by imatek           ###   ########.fr       */
+/*   Updated: 2025/03/17 17:16:00 by imatek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,18 @@ void	init_temp(t_data *data)
 
 void	init_player(t_player *player)
 {
-	player->pos_x = 0;
-	player->pos_y = 0;
+	player->pos_x = WIDTH / 2;
+	player->pos_y = HEIGHT / 2;
 	player->dir_x = 0.0;
 	player->dir_y = 0.0;
 	player->plane_x = 0.0;
 	player->plane_y = 0.0;
+	player->up = false;
+	player->down = false;
+	player->right = false;
+	player->left = false;
+	player->rotate_right = false;
+	player->rotate_left = false;
 }
 
 void	init_data(t_data *data)
@@ -36,8 +42,8 @@ void	init_data(t_data *data)
 	t_player	player;
 
 	init_player(&player);
-	data->width = 0;
-	data->height = 0;
+	data->img->width = 0;
+	data->img->height = 0;
 	// data->max_x = 0;
 	// data->max_y = 0;
 	// data->img_x = 0;

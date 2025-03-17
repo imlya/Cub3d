@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checks_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: magrabko <magrabko@student.42.fr>          +#+  +:+       +#+        */
+/*   By: imatek <imatek@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 17:09:20 by magrabko          #+#    #+#             */
-/*   Updated: 2025/02/18 16:21:40 by magrabko         ###   ########.fr       */
+/*   Updated: 2025/03/17 17:16:00 by imatek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int	check_end(t_data *data, int i)
 		i++;
 	if (data->temp->map_check[i])
 		return (0);
-	data->height -= (i - map_end);
+	data->img->height -= (i - map_end);
 	return (1);
 }
 

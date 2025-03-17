@@ -6,7 +6,7 @@
 /*   By: imatek <imatek@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 17:11:08 by magrabko          #+#    #+#             */
-/*   Updated: 2025/03/17 16:28:02 by imatek           ###   ########.fr       */
+/*   Updated: 2025/03/17 17:16:00 by imatek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int	check_map(t_data *data)
 	i = 0;
 	while (data->map[i])
 	{
-		if ((i == 0 || i == data->height - 1) && !check_walls(data->map, i))
+		if ((i == 0 || i == data->img->height - 1) && !check_walls(data->map, i))
 			return (ft_printf_fd(2, ERR_WALL_MSG), 0);
 		else
 		{

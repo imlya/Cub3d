@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: magrabko <magrabko@student.42.fr>          +#+  +:+       +#+        */
+/*   By: imatek <imatek@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 15:09:35 by magrabko          #+#    #+#             */
-/*   Updated: 2025/02/18 15:17:10 by magrabko         ###   ########.fr       */
+/*   Updated: 2025/03/17 17:16:00 by imatek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,13 @@ int	get_map_size(t_data *data, char **map_check, int *i)
 		start++;
 	if (map_check[start] == NULL)
 		return (0);
-	data->height = data->temp->y - start;
+	data->img->height = data->temp->y - start;
 	*i = start;
 	while (map_check[start])
 	{
 		len = ft_strlen(map_check[start]);
-		if (data->width < len)
-			data->width = len;
+		if (data->img->width < len)
+			data->img->width = len;
 		start++;
 	}
 	return (1);
@@ -41,17 +41,17 @@ int	fill_map_game(t_data *data, int i)
 
 	if (!get_map_size(data, data->temp->map_check, &i))
 		return (0);
-	data->map = malloc(sizeof(char *) * (data->height + 1));
+	data->map = malloc(sizeof(char *) * (data->img->height + 1));
 	check_alloc(data->map, data);
 	j = 0;
 	while (data->temp->map_check[i])
 	{
 		if (is_line_empty(data->temp->map_check[i]))
 			return (data->map[j] = NULL, check_end(data, i));
-		data->map[j] = malloc(sizeof(char) * data->width + 1);
+		data->map[j] = malloc(sizeof(char) * data->img->width + 1);
 		check_alloc(data->map[j], data);
-		data->map[j][data->width] = '\0';
-		ft_memset(data->map[j], ' ', data->width);
+		data->map[j][data->img->width] = '\0';
+		ft_memset(data->map[j], ' ', data->img->width);
 		len = ft_strlen(data->temp->map_check[i]);
 		ft_memcpy(data->map[j++], data->temp->map_check[i++], len);
 	}

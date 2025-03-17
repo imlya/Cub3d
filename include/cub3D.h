@@ -6,7 +6,7 @@
 /*   By: imatek <imatek@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 14:02:07 by magrabko          #+#    #+#             */
-/*   Updated: 2025/03/17 16:34:00 by imatek           ###   ########.fr       */
+/*   Updated: 2025/03/17 16:58:48 by imatek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,13 @@
 # include <unistd.h>
 
 # define RED_INT 0xFF0000
+# define KEY_ESC 65307
+# define KEY_W 119
+# define KEY_A 97
+# define KEY_S 115
+# define KEY_D 100
+# define KEY_RIGHT 65363
+# define KEY_LEFT 65361
 
 /*******************************************
  *                   MLX                    *
@@ -36,6 +43,7 @@
 void	ft_init_mlx(t_data *data, t_img *image);
 void	ft_put_pixel(t_img *image, int x, int y, int color);
 void	ft_draw_player(t_img *image, int x, int y, int size, int color);
+void	ft_events_mlx(t_data *data);
 
 /*******************************************
  *                  EXEC                    *

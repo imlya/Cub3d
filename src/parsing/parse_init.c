@@ -6,7 +6,7 @@
 /*   By: imatek <imatek@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 16:06:24 by magrabko          #+#    #+#             */
-/*   Updated: 2025/03/17 16:28:02 by imatek           ###   ########.fr       */
+/*   Updated: 2025/03/17 17:16:00 by imatek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ void	init_data(t_data *data)
 {
 	data->player->pos_x = 0;
 	data->player->pos_y = 0;
-	data->width = 0;
-	data->height = 0;
+	data->img->width = 0;
+	data->img->height = 0;
 	data->max_x = 0;
 	data->max_y = 0;
 	data->img_x = 0;

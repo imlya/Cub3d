@@ -6,7 +6,7 @@
 /*   By: imatek <imatek@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 11:23:59 by imatek            #+#    #+#             */
-/*   Updated: 2025/03/17 16:25:52 by imatek           ###   ########.fr       */
+/*   Updated: 2025/03/17 17:16:30 by imatek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define STRUCTURES_H
 
 # include "cub3D.h"
+# include <stdbool.h>
 
 # define WIDTH 1250
 # define HEIGHT 720
@@ -34,32 +35,40 @@ typedef struct s_temp
 
 typedef struct s_player
 {
-	int			pos_x;
-	int			pos_y;
+	double		pos_x;
+	double		pos_y;
 	double		dir_x;
 	double		dir_y;
 	double		plane_x;
 	double		plane_y;
-
+	bool		up;
+	bool		down;
+	bool		right;
+	bool		left;
+	bool		rotate_right;
+	bool		rotate_left;
 }				t_player;
 
 typedef struct s_img
 {
 	void		*image;
 	char		*pixels;
+	// char	*path;
 	int			bpp;
 	int			line_len;
 	int			endian;
+	int			width;
+	int			height;
 }				t_img;
 
 typedef struct s_data
 {
 	void		*mlx;
 	void		*window;
-	t_img		*image;
+	t_img		*img;
+	t_img		texture[5];
+	// t_img	minimap;
 	t_player	*player;
-	int			width;
-	int			height;
 	// int			max_x;
 	// int			max_y;
 	// int			img_x;
