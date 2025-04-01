@@ -1,3 +1,15 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: magrabko <magrabko@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2025/03/20 13:16:26 by magrabko          #+#    #+#              #
+#    Updated: 2025/03/20 17:34:08 by magrabko         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 NAME=			cub3D
 
 CFLAGS= 		-Wall -Wextra -Werror -g3
@@ -11,7 +23,8 @@ SRC_PATH= 		src
 SRC_FILES=		main.c cleanup.c
 
 PARS_PATH=		src/parsing
-PARS_FILES=		checks.c checks_utils.c elements.c manager.c map_utils.c pars_utils.c
+PARS_FILES=		checks_utils.c checks.c elem_utils.c flood_fill.c map_utils.c 	\
+				pars_init.c pars_utils.c string_utils.c							\
 
 EXEC_PATH=		src/exec
 EXEC_FILES=		exec.c draw.c mlx.c init.c
