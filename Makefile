@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: magrabko <magrabko@student.42.fr>          +#+  +:+       +#+         #
+#    By: imatek <imatek@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/20 13:16:26 by magrabko          #+#    #+#              #
-#    Updated: 2025/03/20 17:34:08 by magrabko         ###   ########.fr        #
+#    Updated: 2025/04/03 19:12:12 by imatek           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,12 +22,15 @@ RESET=                          \033[0m
 SRC_PATH= 		src
 SRC_FILES=		main.c cleanup.c
 
+EXEC_PATH=		src/exec
+EXEC_FILES=		draw.c mlx.c init.c 
+
 PARS_PATH=		src/parsing
 PARS_FILES=		checks_utils.c checks.c elem_utils.c flood_fill.c map_utils.c 	\
-				pars_init.c pars_utils.c string_utils.c							\
+				init_data.c pars_utils.c string_utils.c player.c
 
-EXEC_PATH=		src/exec
-EXEC_FILES=		exec.c draw.c mlx.c init.c
+RAY_PATH=		src/raycasting
+RAY_FILES=		ray_set.c raycasting.c
 
 LIBFT_PATH=    	./libft
 MLX_PATH=		./minilibx-linux
@@ -43,6 +46,7 @@ MLX_URL= 		https://github.com/42Paris/minilibx-linux.git
 SRC=			$(SRC_PATH)/$(SRC_FILES)	\
 				$(PARS_PATH)/$(PARS_FILES)	\
 				$(EXEC_PATH)/$(EXEC_FILES)	\
+				$(RAY_PATH)/$(RAY_FILES)	\
 
 OBJ_PATH= 		obj
 OBJ= 			$(addprefix $(OBJ_PATH)/, $(notdir $(SRC:.c=.o)))
@@ -61,6 +65,9 @@ $(OBJ_PATH)/%.o: $(PARS_PATH)/%.c | $(OBJ_PATH)
 	@$(CC) $(CFLAGS) $(INCLD) -c $< -o $@
 
 $(OBJ_PATH)/%.o: $(EXEC_PATH)/%.c | $(OBJ_PATH)
+	@$(CC) $(CFLAGS) $(INCLD) -c $< -o $@
+
+$(OBJ_PATH)/%.o: $(RAY_PATH)/%.c | $(OBJ_PATH)
 	@$(CC) $(CFLAGS) $(INCLD) -c $< -o $@
 
 $(MLX_PATH):

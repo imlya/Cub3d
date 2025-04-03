@@ -6,11 +6,12 @@
 /*   By: imatek <imatek@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 16:20:26 by magrabko          #+#    #+#             */
-/*   Updated: 2025/04/01 17:10:01 by imatek           ###   ########.fr       */
+/*   Updated: 2025/04/03 14:19:50 by imatek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3D.h"
+
 void	free_ptr(void **ptr)
 {
 	if (ptr != NULL || *ptr != NULL)
