@@ -6,7 +6,7 @@
 /*   By: imatek <imatek@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 16:06:24 by magrabko          #+#    #+#             */
-/*   Updated: 2025/04/05 00:44:23 by imatek           ###   ########.fr       */
+/*   Updated: 2025/04/07 13:41:01 by imatek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	ft_init_player(t_data *data)
 	data->player.rotate_left = false;
 	data->player.rotate_right = false;
 	ft_player_dir(data);
+	//! ft_player_pos
 }
 
 void	ft_init_ray(t_data *data)
@@ -40,8 +41,8 @@ void	ft_init_ray(t_data *data)
 	data->ray.side_dist_y = 0;
 	data->ray.map_x = 0;
 	data->ray.map_y = 0;
-	data->ray.step_x = 0; 
-	data->ray.step_y = 0; 
+	data->ray.step_x = 0;
+	data->ray.step_y = 0;
 	data->ray.wall_side = 0;
 	data->ray.perpwalldist = 0;
 	data->ray.line_height = 0;

@@ -6,7 +6,7 @@
 /*   By: imatek <imatek@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 11:21:47 by imatek            #+#    #+#             */
-/*   Updated: 2025/04/07 12:36:45 by imatek           ###   ########.fr       */
+/*   Updated: 2025/04/07 14:41:47 by imatek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ int	ft_destroy(t_data *data)
 int	ft_loop(t_data *data)
 {
 	ft_draw_background(data);
+	printf("coucou\n");
 	ft_raycasting(data);
 	ft_moves(data);
 	mlx_put_image_to_window(data->mlx_ptr, data->window, data->img[4].img, 0,
@@ -61,6 +62,10 @@ static void	ft_init_img(t_data *data)
 	int	i;
 
 	i = 0;
+	data->img[0].path = data->north;
+	data->img[1].path = data->south;
+	data->img[2].path = data->east;
+	data->img[3].path = data->west;
 	while (i < 4)
 	{
 		data->img[i].img = mlx_xpm_file_to_image(data->mlx_ptr,
@@ -68,7 +73,7 @@ static void	ft_init_img(t_data *data)
 		if (!data->img[i].img)
 		{
 			// ft_destroy(data);
-			ft_putendl_fd("mlx_new_image failed", 2);
+			ft_putendl_fd("mlx_xpm_file failed", 2);
 		}
 		i++;
 	}
@@ -76,8 +81,9 @@ static void	ft_init_img(t_data *data)
 	i = 0;
 	while (i < 5)
 	{
-		data->img[i].pixels = mlx_get_data_addr(data->img[i].img, &data->img[i].bpp,
-				&data->img[i].line_len, &data->img[i].endian);
+		data->img[i].pixels = mlx_get_data_addr(data->img[i].img,
+				&data->img[i].bpp, &data->img[i].line_len,
+				&data->img[i].endian);
 		i++;
 	}
 }

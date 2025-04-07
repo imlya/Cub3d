@@ -6,7 +6,7 @@
 /*   By: imatek <imatek@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 11:42:30 by imatek            #+#    #+#             */
-/*   Updated: 2025/04/07 11:03:34 by imatek           ###   ########.fr       */
+/*   Updated: 2025/04/07 14:40:36 by imatek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	ft_draw_background(t_data *data)
 				ft_put_pixel(data, x, y, RED_INT); // !a remplacer par c_color
 			else
 				ft_put_pixel(data, x, y, GREEN_INT); // !a remplacer par f_color
-			x++;
+			y++;
 		}
 		x++;
 	}

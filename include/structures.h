@@ -6,14 +6,13 @@
 /*   By: imatek <imatek@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 11:23:59 by imatek            #+#    #+#             */
-/*   Updated: 2025/04/07 13:08:26 by imatek           ###   ########.fr       */
+/*   Updated: 2025/04/07 13:47:51 by imatek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCTURES_H
 # define STRUCTURES_H
 
-# include "cub3D.h"
 # include <stdbool.h>
 
 # define WIDTH 680

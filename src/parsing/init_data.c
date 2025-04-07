@@ -6,7 +6,7 @@
 /*   By: imatek <imatek@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 16:06:24 by magrabko          #+#    #+#             */
-/*   Updated: 2025/04/07 11:48:13 by imatek           ###   ########.fr       */
+/*   Updated: 2025/04/07 14:51:45 by imatek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,4 @@ void	init_data(t_data *data)
 	init_pars(data);
 	init_img(data);
 	init_assets(data);
-	ft_player_dir(data);
-	//! ft_player_pos
 }
