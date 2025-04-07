@@ -6,7 +6,7 @@
 /*   By: imatek <imatek@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 11:23:59 by imatek            #+#    #+#             */
-/*   Updated: 2025/04/03 19:27:31 by imatek           ###   ########.fr       */
+/*   Updated: 2025/04/07 13:08:26 by imatek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,21 @@
 # include "cub3D.h"
 # include <stdbool.h>
 
-# define WIDTH 1940
-# define HEIGHT 1280
+# define WIDTH 680
+# define HEIGHT 1024
+# define RED_INT 0xFF0000
+# define GREEN_INT 0x00FF00
+
+# define KEY_ESC 65307
+# define KEY_W 119
+# define KEY_A 97
+# define KEY_S 115
+# define KEY_D 100
+# define KEY_RIGHT 65363
+# define KEY_LEFT 65361
+
+# define SPEED 0.06
+# define ROTSPEED 0.02
 
 typedef struct s_pars
 {
@@ -36,12 +49,12 @@ typedef struct s_text
 {
 	void		*img;
 	char		*pixels;
+	char		*path;
 	int			bpp;
 	int			line_len;
 	int			endian;
 	int			width;
 	int			height;
-	char		*path;
 
 }				t_text;
 
@@ -55,8 +68,8 @@ typedef struct s_hand
 typedef struct s_effect
 {
 	t_text		frames[11];
-	double		delay;
-	int			current_frame;
+	double delay;      //! oldtime ?
+	int current_frame; //! current_time ?
 }				t_effect;
 
 typedef struct s_assets
@@ -81,14 +94,12 @@ typedef struct s_player
 	double		dir_y;
 	double		plane_x;
 	double		plane_y;
-	double		time;
-	double		old_time;
 	bool		up;
 	bool		down;
 	bool		right;
 	bool		left;
-	bool		rotate_right;
 	bool		rotate_left;
+	bool		rotate_right;
 }				t_player;
 
 typedef struct s_ray
@@ -105,17 +116,15 @@ typedef struct s_ray
 	int			map_y;
 	int			step_x;
 	int			step_y;
-	int			side;
 	int			line_height;
 	int			draw_start;
 	int			draw_end;
-	// int			wall_side;
-	// int			wall_dist;
-	// int			size_line;
-	// int			start_line;
-	// int			end_line;
-	// int			start;
-	// int			end;
+	int wall_side; //! quel cote du mur a ete touche par le rayon
+					// int			size_line;
+					// int			start_line;
+					// int			end_line;
+					// int			start;
+					// int			end;
 }				t_ray;
 
 typedef struct s_data
@@ -128,8 +137,6 @@ typedef struct s_data
 	int			width;
 	char		facing;
 	// t_text		minimap;
-	// int			rgb_floor[3];
-	// int			rgb_sky[3];
 	// double		step;
 	// int			texture;
 	// int			tex_x;

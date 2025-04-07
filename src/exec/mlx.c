@@ -6,7 +6,7 @@
 /*   By: imatek <imatek@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 11:21:47 by imatek            #+#    #+#             */
-/*   Updated: 2025/04/03 19:42:38 by imatek           ###   ########.fr       */
+/*   Updated: 2025/04/07 12:36:45 by imatek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,21 @@
 
 int	ft_destroy(t_data *data)
 {
-	// if (data->img)
-	// {
-	// 	destroy_texture(data, data->img, 0, 1);
-	// 	destroy_texture(data, data->img, 0, 1);
-	// 	free_ptr((void **)&data->img);
-	// }
+	int	i;
+
+	i = 0;
+	if (data->img[i].img)
+	{
+		destroy_texture(data, data->img, 0, 1);
+		destroy_texture(data, data->img, 0, 1);
+		free_ptr((void **)&data->img);
+		i++;
+	}
 	if (data->assets)
 		free_assets(data);
 	if (data->window)
 		mlx_destroy_window(data->mlx_ptr, data->window);
-	mlx_loop_end(data->mlx_ptr);
+	// mlx_loop_end(data->mlx_ptr);
 	if (data->mlx_ptr)
 		mlx_destroy_display(data->mlx_ptr);
 	// ne pas liberer manuellement mlx_ptr, destroy_display s'en occupe
@@ -32,73 +36,23 @@ int	ft_destroy(t_data *data)
 	exit(EXIT_SUCCESS);
 }
 
-int	ft_keypress(int keycode, t_data *data)
-{
-	if (keycode == KEY_ESC)
-		ft_destroy(data);
-	if (keycode == KEY_W)
-		data->player.up = true;
-	else if (keycode == KEY_S)
-		data->player.down = true;
-	else if (keycode == KEY_D)
-		data->player.right = true;
-	else if (keycode == KEY_A)
-		data->player.left = true;
-	else if (keycode == KEY_RIGHT)
-		data->player.rotate_right = true;
-	else if (keycode == KEY_LEFT)
-		data->player.rotate_left = true;
-	return (0);
-}
-
-int	ft_keyrelease(int keycode, t_data *data)
-{
-	if (keycode == KEY_W)
-		data->player.up = false;
-	else if (keycode == KEY_S)
-		data->player.down = false;
-	else if (keycode == KEY_D)
-		data->player.right = false;
-	else if (keycode == KEY_A)
-		data->player.left = false;
-	else if (keycode == KEY_RIGHT)
-		data->player.rotate_right = false;
-	else if (keycode == KEY_LEFT)
-		data->player.rotate_left = false;
-	return (0);
-}
-
-void	ft_move(t_data *data)
-{
-	int	speed;
-
-	speed = 2;
-	if (data->player.up)
-		data->player.pos_y -= speed;
-	if (data->player.down)
-		data->player.pos_y += speed;
-	if (data->player.right)
-		data->player.pos_x += speed;
-	if (data->player.left)
-		data->player.pos_x -= speed;
-}
-
 int	ft_loop(t_data *data)
 {
-	ft_move(data);
-	ft_clear_player(data);
-	ft_draw_player(data, data->player.pos_x, data->player.pos_y, 8, RED_INT);
-	mlx_put_image_to_window(data->mlx_ptr, data->window, data->img->img, 0, 0);
+	ft_draw_background(data);
+	ft_raycasting(data);
+	ft_moves(data);
+	mlx_put_image_to_window(data->mlx_ptr, data->window, data->img[4].img, 0,
+		0);
 	return (0);
 }
 
 static void	ft_events_mlx(t_data *data)
 {
+	mlx_loop_hook(data->mlx_ptr, &ft_loop, data);
+	mlx_hook(data->window, KeyPress, KeyPressMask, ft_keypress, data);
+	mlx_hook(data->window, KeyRelease, KeyReleaseMask, ft_keyrelease, data);
 	mlx_hook(data->window, DestroyNotify, StructureNotifyMask, ft_destroy,
 		data);
-	mlx_hook(data->window, KeyPress, KeyPressMask, ft_keypress, data);
-	mlx_loop_hook(data->mlx_ptr, ft_loop, data);
-	mlx_hook(data->window, KeyRelease, KeyReleaseMask, ft_keyrelease, data);
 	mlx_loop(data->mlx_ptr);
 }
 
@@ -107,30 +61,31 @@ static void	ft_init_img(t_data *data)
 	int	i;
 
 	i = 0;
-	while (i < 5)
+	while (i < 4)
 	{
-		data->img[i].img = mlx_xpm_file_to_image(data->mlx_ptr, data->img[i].path,
-			&data->img[i].width, &data->img[i].height);
-		data->img[i].img = mlx_new_image(data->mlx_ptr, WIDTH, HEIGHT);
+		data->img[i].img = mlx_xpm_file_to_image(data->mlx_ptr,
+				data->img[i].path, &data->img[i].width, &data->img[i].height);
 		if (!data->img[i].img)
 		{
-			ft_destroy(data);
+			// ft_destroy(data);
 			ft_putendl_fd("mlx_new_image failed", 2);
 		}
-		data->img->pixels = mlx_get_data_addr(data->img->img, &data->img->bpp,
-				&data->img->line_len, &data->img->endian);
-		if (!data->img[i].pixels)
-		{
-			ft_destroy(data);
-			ft_putendl_fd("mlx_new_image failed", 2);
-		}
+		i++;
 	}
-	// mlx_put_image_to_window(data->mlx_ptr, data->window, data->img->img, 0, 0);
+	data->img[4].img = mlx_new_image(data->mlx_ptr, WIDTH, HEIGHT);
+	i = 0;
+	while (i < 5)
+	{
+		data->img[i].pixels = mlx_get_data_addr(data->img[i].img, &data->img[i].bpp,
+				&data->img[i].line_len, &data->img[i].endian);
+		i++;
+	}
 }
 
 void	ft_init_mlx(t_data *data)
 {
 	ft_init_player(data);
+	ft_init_ray(data);
 	data->mlx_ptr = mlx_init();
 	if (!data->mlx_ptr)
 	{

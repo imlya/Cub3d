@@ -6,7 +6,7 @@
 /*   By: imatek <imatek@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 11:42:30 by imatek            #+#    #+#             */
-/*   Updated: 2025/04/01 17:52:12 by imatek           ###   ########.fr       */
+/*   Updated: 2025/04/07 11:03:34 by imatek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,35 +22,23 @@ void	ft_put_pixel(t_data *data, int x, int y, int color)
 	*(unsigned int *)(dest + data->img->pixels) = color;
 }
 
-void	ft_draw_player(t_data *data, int x, int y, int size, int color)
+void	ft_draw_background(t_data *data)
 {
-	int	i;
+	int	x;
+	int	y;
 
-	i = 0;
-	while (i <= size)
+	x = 0;
+	while (x < HEIGHT)
 	{
-		ft_put_pixel(data, x + i, y, color);
-		ft_put_pixel(data, x, y + i, color);
-		ft_put_pixel(data, x + size, y + i, color);
-		ft_put_pixel(data, x + i, y + size, color);
-		i++;
-	}
-}
-
-void	ft_clear_player(t_data *data)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (i <= HEIGHT)
-	{
-		j = 0;
-		while (j < WIDTH)
+		y = 0;
+		while (y < WIDTH)
 		{
-			ft_put_pixel(data, j, i, 0);
-			j++;
+			if (y < HEIGHT / 2)
+				ft_put_pixel(data, x, y, RED_INT); // !a remplacer par c_color
+			else
+				ft_put_pixel(data, x, y, GREEN_INT); // !a remplacer par f_color
+			x++;
 		}
-		i++;
+		x++;
 	}
 }

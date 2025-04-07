@@ -6,7 +6,7 @@
 #    By: imatek <imatek@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/20 13:16:26 by magrabko          #+#    #+#              #
-#    Updated: 2025/04/03 19:12:12 by imatek           ###   ########.fr        #
+#    Updated: 2025/04/07 12:57:11 by imatek           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,14 +23,14 @@ SRC_PATH= 		src
 SRC_FILES=		main.c cleanup.c
 
 EXEC_PATH=		src/exec
-EXEC_FILES=		draw.c mlx.c init.c 
+EXEC_FILES=		mlx.c init.c player.c moves.c
 
 PARS_PATH=		src/parsing
 PARS_FILES=		checks_utils.c checks.c elem_utils.c flood_fill.c map_utils.c 	\
 				init_data.c pars_utils.c string_utils.c player.c
 
 RAY_PATH=		src/raycasting
-RAY_FILES=		ray_set.c raycasting.c
+RAY_FILES=		raycasting.c draw.c 
 
 LIBFT_PATH=    	./libft
 MLX_PATH=		./minilibx-linux

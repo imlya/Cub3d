@@ -6,7 +6,7 @@
 /*   By: imatek <imatek@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 12:49:55 by magrabko          #+#    #+#             */
-/*   Updated: 2025/04/03 18:35:16 by imatek           ###   ########.fr       */
+/*   Updated: 2025/04/05 00:18:01 by imatek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ int	main(int argc, char **argv)
 	check_input(&data, argc, argv[1]);
 	print_all(&data);
 	ft_init_mlx(&data);
-	// ft_raycasting(&data);
 	free_all(&data);
 	return (0);
 }
