@@ -1,10 +1,10 @@
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -I. -g3 -MMD
 LIBFLAGS = -L./libft/ -lft
-MLXFLAGS = -Lmlx -lm -lX11 -lXext -lXrandr -lXi
-MLXLIB = minilibx-linux/libmlx_Linux.a
+MLXFLAGS = -L/opt/X11/lib -Lmlx -lm -lX11 -lXext -lXrandr -lXi
+MLXLIB = minilibx-linux/libmlx.a
 
-SRC = $(wildcard src/*.c src/parsing/*c src/exec/*c)
+SRC = $(wildcard src/*.c src/parsing/*.c src/exec/*.c)
 
 OBJ_DIR = obj
 OBJ = $(SRC:%.c=$(OBJ_DIR)/%.o)
@@ -22,13 +22,13 @@ $(OBJ_DIR)/%.o: %.c
 all: $(NAME)
 
 $(MLXLIB):
-	make -j4 -C mlx
+	make -j4 -C minilibx-linux
 
 $(NAME): $(OBJ) $(MLXLIB) $(LIBFT)
 	$(CC) $(CFLAGS) -o $(NAME) $(OBJ) $(MLXFLAGS) $(MLXLIB) $(LIBFLAGS)
 
 $(LIBFT):
-	$(MAKE) -j4 -C $(LIBFT_PATH) 
+	$(MAKE) -j4 -C $(LIBFT_PATH)
 
 -include $(DEP)
 

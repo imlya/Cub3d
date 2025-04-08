@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structures.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: imatek <imatek@student.42.fr>              +#+  +:+       +#+        */
+/*   By: Moon <Moon@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 11:23:59 by imatek            #+#    #+#             */
-/*   Updated: 2025/04/07 13:47:51 by imatek           ###   ########.fr       */
+/*   Updated: 2025/04/08 11:13:50 by Moon             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 # include <stdbool.h>
 
-# define WIDTH 680
-# define HEIGHT 1024
+# define WIDTH 1024
+# define HEIGHT 668
 # define RED_INT 0xFF0000
 # define GREEN_INT 0x00FF00
 
@@ -87,8 +87,8 @@ typedef struct s_assets
 
 typedef struct s_player
 {
-	double		pos_x;
-	double		pos_y;
+	double		pos_x; //! deja set ??
+	double		pos_y; //! deja set ??
 	double		dir_x;
 	double		dir_y;
 	double		plane_x;

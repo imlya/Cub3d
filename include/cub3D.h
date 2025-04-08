@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: imatek <imatek@student.42.fr>              +#+  +:+       +#+        */
+/*   By: Moon <Moon@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 14:02:07 by magrabko          #+#    #+#             */
-/*   Updated: 2025/04/07 13:34:03 by imatek           ###   ########.fr       */
+/*   Updated: 2025/04/08 12:18:42 by Moon             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 # include "../libft/libft.h"
 # include "../minilibx-linux/mlx.h"
 # include "parsing.h"
-# include "structures.h"
 # include <X11/X.h>
 # include <X11/keysym.h>
 # include <errno.h>
@@ -29,20 +28,11 @@
 # include <string.h>
 # include <unistd.h>
 
-// enum	e_direction
-// {
-// 	NORTH = 0,
-// 	SOUTH = 1,
-// 	EAST = 2,
-// 	WEST = 3
-// };
-
 /*******************************************
  *                   INIT                    *
  ********************************************/
+void	ft_init_game(t_data *data);
 void	ft_init_player(t_data *data);
-void	ft_init_mlx(t_data *data);
-void	ft_init_ray(t_data *data);
 void	ft_moves(t_data *data);
 int		ft_keypress(int keycode, t_data *data);
 int		ft_keyrelease(int keycode, t_data *data);
@@ -55,9 +45,10 @@ void	ft_draw_background(t_data *data);
 /*******************************************
  *                  EXEC                    *
  ********************************************/
+void	ft_init_ray(t_data *data);
 void	ft_raycasting(t_data *data);
+void	ft_events_mlx(t_data *data);
 // void	ft_add_texture(t_data *data, int i);
-void	ft_player_dir(t_data *data);
 
 // /* TEMPORAIRE -> TESTS */
 void	print_all(t_data *data);
