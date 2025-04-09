@@ -6,7 +6,7 @@
 /*   By: imatek <imatek@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 16:20:26 by magrabko          #+#    #+#             */
-/*   Updated: 2025/04/03 14:19:50 by imatek           ###   ########.fr       */
+/*   Updated: 2025/04/09 16:08:38 by imatek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	free_tab(char ***tab)
 	free_ptr((void **)tab);
 }
 
-void	destroy_texture(t_data *data, t_text *texture, int i, int n)
+void	destroy_texture(t_data *data, t_img*texture, int i, int n)
 {
 	if (n == 1)
 	{

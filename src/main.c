@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Moon <Moon@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: imatek <imatek@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 12:49:55 by magrabko          #+#    #+#             */
-/*   Updated: 2025/04/08 11:19:24 by Moon             ###   ########.fr       */
+/*   Updated: 2025/04/09 15:09:46 by imatek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	main(int argc, char **argv)
 
 	check_input(&data, argc, argv[1]);
 	print_all(&data);
-	ft_init_game(&data);
+	ft_game(&data);
 	free_all(&data);
 	return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structures.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Moon <Moon@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: imatek <imatek@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 11:23:59 by imatek            #+#    #+#             */
-/*   Updated: 2025/04/08 11:13:50 by Moon             ###   ########.fr       */
+/*   Updated: 2025/04/09 21:31:38 by imatek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,7 @@
 
 # define WIDTH 1024
 # define HEIGHT 668
-# define RED_INT 0xFF0000
-# define GREEN_INT 0x00FF00
+# define TEXTURE_SIZE 64
 
 # define KEY_ESC 65307
 # define KEY_W 119
@@ -30,6 +29,14 @@
 
 # define SPEED 0.06
 # define ROTSPEED 0.02
+
+// typedef enum s_dir
+// {
+// 	NORTH,
+// 	SOUTH,
+// 	EAST,
+// 	WEST,
+// }				t_dir;
 
 typedef struct s_pars
 {
@@ -44,7 +51,7 @@ typedef struct s_pars
 	char		**map_check;
 }				t_pars;
 
-typedef struct s_text
+typedef struct s_img
 {
 	void		*img;
 	char		*pixels;
@@ -55,40 +62,40 @@ typedef struct s_text
 	int			width;
 	int			height;
 
-}				t_text;
+}				t_img;
 
 typedef struct s_hand
 {
-	t_text		frames[4];
+	t_img		frames[4];
 	double		delay;
 	int			current_frame;
 }				t_hand;
 
 typedef struct s_effect
 {
-	t_text		frames[11];
+	t_img		frames[11];
 	double delay;      //! oldtime ?
 	int current_frame; //! current_time ?
 }				t_effect;
 
 typedef struct s_assets
 {
-	t_text		*w_north;
-	t_text		*w_south;
-	t_text		*w_west;
-	t_text		*w_east;
-	t_text		*sky;
-	t_text		*floor;
-	t_text		*door;
-	t_text		*donut;
+	t_img		*w_north;
+	t_img		*w_south;
+	t_img		*w_west;
+	t_img		*w_east;
+	t_img		*sky;
+	t_img		*floor;
+	t_img		*door;
+	t_img		*donut;
 	t_effect	*effect;
 	t_hand		*hand;
 }				t_assets;
 
 typedef struct s_player
 {
-	double		pos_x; //! deja set ??
-	double		pos_y; //! deja set ??
+	double		pos_x;
+	double		pos_y;
 	double		dir_x;
 	double		dir_y;
 	double		plane_x;
@@ -111,6 +118,9 @@ typedef struct s_ray
 	double		side_dist_x;
 	double		side_dist_y;
 	double		perpwalldist;
+	double		step;
+	double		tex_pos;
+	double		wall_x;
 	int			map_x;
 	int			map_y;
 	int			step_x;
@@ -118,30 +128,22 @@ typedef struct s_ray
 	int			line_height;
 	int			draw_start;
 	int			draw_end;
-	int wall_side; //! quel cote du mur a ete touche par le rayon
-					// int			size_line;
-					// int			start_line;
-					// int			end_line;
-					// int			start;
-					// int			end;
+	int			wall_side;
+	int			tex_x;
+	int			tex_y;
 }				t_ray;
 
 typedef struct s_data
 {
 	void		*mlx_ptr;
 	void		*window;
-	t_text		img[5];
+	t_img		img[5];
+	t_img		*texture;
 	char		**map;
 	int			height;
 	int			width;
 	char		facing;
-	// t_text		minimap;
-	// double		step;
-	// int			texture;
-	// int			tex_x;
-	// int			tex_y;
-	// double		tex_pos;
-	// double		wall_x;
+	// t_img		minimap;
 	int			*f_color;
 	int			*c_color;
 	char		*north;

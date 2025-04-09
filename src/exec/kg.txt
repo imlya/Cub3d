@@ -1,0 +1,26 @@
+     
+     
+     //texturing calculations
+     int texNum = worldMap[mapX][mapY] - 1; //1 subtracted from it so that texture 0 can be used!
+
+
+        for(int y = drawStart; y<drawEnd; y++)
+        {
+          // Cast the texture coordinate to integer, and mask with (texHeight - 1) in case of overflow
+          Uint32 color = texture[texNum][texHeight * texY + texX];
+          //make color darker for y-sides: R, G and B byte each divided through two with a "shift" and an "and"
+          if(side == 1) color = (color >> 1) & 8355711;
+          buffer[y][x] = color;
+        }
+        drawBuffer(buffer[0]);
+        for(int y = 0; y < h; y++) for(int x = 0; x < w; x++) buffer[y][x] = 0; //clear the buffer instead of cls()
+        //timing for input and FPS counter
+        oldTime = time;
+        time = getTicks();
+        double frameTime = (time - oldTime) / 1000.0; //frametime is the time this frame has taken, in seconds
+        print(1.0 / frameTime); //FPS counter
+        redraw();
+    
+        //speed modifiers
+        double moveSpeed = frameTime * 5.0; //the constant value is in squares/second
+        double rotSpeed = frameTime * 3.0; //the constant value is in radians/second

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Moon <Moon@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: imatek <imatek@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 12:35:47 by imatek            #+#    #+#             */
-/*   Updated: 2025/04/08 10:20:13 by Moon             ###   ########.fr       */
+/*   Updated: 2025/04/09 21:44:23 by imatek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,13 @@ static void	ft_set_step_and_side(t_data *data)
 	{
 		data->ray.step_y = -1;
 		data->ray.side_dist_y = (data->player.pos_y - data->ray.map_y)
-			* data->player.pos_y;
+			* data->ray.delta_dist_y;
 	}
 	else
 	{
 		data->ray.step_y = 1;
 		data->ray.side_dist_y = (data->ray.map_y + 1.0 - data->player.pos_y)
-			* data->player.pos_y;
+			* data->ray.delta_dist_y;
 	}
 }
 
@@ -79,8 +79,9 @@ static void	ft_dda(t_data *data)
 			data->ray.map_y += data->ray.step_y;
 			data->ray.wall_side = 1;
 		}
-		// Check if ray has hit a wall
-		if (data->map[data->ray.map_x][data->ray.map_y] > '0')
+		if (data->ray.map_x < 0 || data->ray.map_y < 0
+			|| data->ray.map_x >= data->height || data->ray.map_y >= data->width
+			|| data->map[data->ray.map_y][data->ray.map_x] > '0')
 			hit = 1;
 	}
 }
@@ -89,7 +90,7 @@ static void	ft_wall_dist(t_data *data)
 {
 	if (data->ray.wall_side == 0)
 		data->ray.perpwalldist = (data->ray.side_dist_x
-				- data->ray.delta_dist_x);
+			- data->ray.delta_dist_x);
 	else
 		data->ray.perpwalldist = (data->ray.side_dist_y
 				- data->ray.delta_dist_y);
@@ -114,7 +115,7 @@ void	ft_raycasting(t_data *data)
 		ft_ray_set(data, i);
 		ft_dda(data);
 		ft_wall_dist(data);
-		// ft_add_texture(data, int i);
+		ft_set_texture(data, i);
 		i++;
 	}
 }
