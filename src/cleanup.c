@@ -6,7 +6,7 @@
 /*   By: imatek <imatek@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 16:20:26 by magrabko          #+#    #+#             */
-/*   Updated: 2025/04/09 16:08:38 by imatek           ###   ########.fr       */
+/*   Updated: 2025/04/10 13:40:14 by imatek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	free_ptr(void **ptr)
 {
-	if (ptr != NULL || *ptr != NULL)
+	if (ptr && *ptr)
 	{
 		free(*ptr);
 		*ptr = NULL;

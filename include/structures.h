@@ -6,7 +6,7 @@
 /*   By: imatek <imatek@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 11:23:59 by imatek            #+#    #+#             */
-/*   Updated: 2025/04/09 21:31:38 by imatek           ###   ########.fr       */
+/*   Updated: 2025/04/10 11:29:06 by imatek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 # include <stdbool.h>
 
-# define WIDTH 1024
-# define HEIGHT 668
+# define WIDTH 640
+# define HEIGHT 480
 # define TEXTURE_SIZE 64
 
 # define KEY_ESC 65307
@@ -26,17 +26,20 @@
 # define KEY_D 100
 # define KEY_RIGHT 65363
 # define KEY_LEFT 65361
+# define MINISIZE 200
+# define TILE_SIZE 10
 
 # define SPEED 0.06
 # define ROTSPEED 0.02
 
-// typedef enum s_dir
-// {
-// 	NORTH,
-// 	SOUTH,
-// 	EAST,
-// 	WEST,
-// }				t_dir;
+typedef enum s_dir
+{
+	NORTH,
+	SOUTH,
+	EAST,
+	WEST,
+	MINI_MAP,
+}				t_dir;
 
 typedef struct s_pars
 {
@@ -139,11 +142,11 @@ typedef struct s_data
 	void		*window;
 	t_img		img[5];
 	t_img		*texture;
+	t_img		minimap;
 	char		**map;
 	int			height;
 	int			width;
 	char		facing;
-	// t_img		minimap;
 	int			*f_color;
 	int			*c_color;
 	char		*north;

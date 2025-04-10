@@ -6,7 +6,7 @@
 /*   By: imatek <imatek@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 12:49:55 by magrabko          #+#    #+#             */
-/*   Updated: 2025/04/09 15:09:46 by imatek           ###   ########.fr       */
+/*   Updated: 2025/04/10 13:24:56 by imatek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ int	main(int argc, char **argv)
 	check_input(&data, argc, argv[1]);
 	print_all(&data);
 	ft_game(&data);
+	mlx_loop(data.mlx_ptr);
 	free_all(&data);
 	return (0);
 }

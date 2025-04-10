@@ -6,7 +6,7 @@
 /*   By: imatek <imatek@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 12:54:43 by imatek            #+#    #+#             */
-/*   Updated: 2025/04/09 21:45:19 by imatek           ###   ########.fr       */
+/*   Updated: 2025/04/10 14:08:56 by imatek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,22 @@
 
 void	ft_set_texture(t_data *data, int x)
 {
-	int color;
-	int y;
-	
+	int	color;
+	int	y;
+
 	if (data->ray.wall_side == 0)
 	{
 		if (data->ray.dir_x > 0)
-			data->texture = &data->img[0];
+			data->texture = &data->img[NORTH];
 		else
-			data->texture = &data->img[1];
+			data->texture = &data->img[SOUTH];
 	}
 	else
 	{
 		if (data->ray.dir_y > 0)
-			data->texture = &data->img[2];
+			data->texture = &data->img[EAST];
 		else
-			data->texture = &data->img[3];
+			data->texture = &data->img[WEST];
 	}
 	if (data->ray.wall_side == 0)
 		data->ray.wall_x = data->player.pos_y + (data->ray.perpwalldist
@@ -42,15 +42,17 @@ void	ft_set_texture(t_data *data, int x)
 	if ((data->ray.wall_side == 0 && data->ray.dir_x > 0)
 		|| (data->ray.wall_side == 1 && data->ray.dir_y < 0))
 		data->ray.tex_x = TEXTURE_SIZE - data->ray.tex_x - 1;
-	data->ray.step = 1.0 * TEXTURE_SIZE / data->ray.line_height;
-	data->ray.tex_pos = (data->ray.draw_start - HEIGHT / 2
-			+ data->ray.line_height / 2) * data->ray.step;
+	data->ray.step = (1.0 * TEXTURE_SIZE) / data->ray.line_height;
+	data->ray.tex_pos = (data->ray.draw_start - (HEIGHT / 2)
+			+ (data->ray.line_height / 2)) * data->ray.step;
 	y = data->ray.draw_start;
 	while (y < data->ray.draw_end)
 	{
 		data->ray.tex_y = (int)data->ray.tex_pos & (TEXTURE_SIZE - 1);
 		data->ray.tex_pos += data->ray.step;
-		color = *((unsigned int*)(data->texture->pixels + data->ray.tex_y * data->texture->line_len + data->ray.tex_x * (data->texture->bpp / 8)));
+		color = *((unsigned int *)(data->texture->pixels + data->ray.tex_y
+					* data->texture->line_len + data->ray.tex_x
+					* (data->texture->bpp / 8)));
 		ft_put_pixel(data, x, y, color);
 		y++;
 	}

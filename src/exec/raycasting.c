@@ -6,7 +6,7 @@
 /*   By: imatek <imatek@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 12:35:47 by imatek            #+#    #+#             */
-/*   Updated: 2025/04/09 21:44:23 by imatek           ###   ########.fr       */
+/*   Updated: 2025/04/10 14:50:46 by imatek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static void	ft_set_step_and_side(t_data *data)
 
 static void	ft_ray_set(t_data *data, int i)
 {
-	data->ray.camera_x = 2 * i / (double)WIDTH - 1;
+	data->ray.camera_x = 2 * i / ((double)WIDTH - 1);
 	data->ray.dir_x = data->player.dir_x + data->player.plane_x
 		* data->ray.camera_x;
 	data->ray.dir_y = data->player.dir_y + data->player.plane_y
@@ -81,7 +81,7 @@ static void	ft_dda(t_data *data)
 		}
 		if (data->ray.map_x < 0 || data->ray.map_y < 0
 			|| data->ray.map_x >= data->height || data->ray.map_y >= data->width
-			|| data->map[data->ray.map_y][data->ray.map_x] > '0')
+			|| data->map[data->ray.map_x][data->ray.map_y] == '1')
 			hit = 1;
 	}
 }
@@ -90,17 +90,17 @@ static void	ft_wall_dist(t_data *data)
 {
 	if (data->ray.wall_side == 0)
 		data->ray.perpwalldist = (data->ray.side_dist_x
-			- data->ray.delta_dist_x);
+				- data->ray.delta_dist_x);
 	else
 		data->ray.perpwalldist = (data->ray.side_dist_y
 				- data->ray.delta_dist_y);
 	// Calculate height of line to draw on screen
 	data->ray.line_height = (int)(HEIGHT / data->ray.perpwalldist);
 	// calculate lowest and highest pixel to fill in current stripe
-	data->ray.draw_start = -data->ray.line_height / 2 + HEIGHT / 2;
+	data->ray.draw_start = (-data->ray.line_height / 2) + (HEIGHT / 2);
 	if (data->ray.draw_start < 0)
 		data->ray.draw_start = 0;
-	data->ray.draw_end = data->ray.line_height / 2 + HEIGHT / 2;
+	data->ray.draw_end = (data->ray.line_height / 2) + (HEIGHT / 2);
 	if (data->ray.draw_end >= HEIGHT)
 		data->ray.draw_end = HEIGHT - 1;
 }

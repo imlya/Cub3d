@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   moves.c                                            :+:      :+:    :+:   */
+/*   event_moves.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: imatek <imatek@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 11:48:45 by imatek            #+#    #+#             */
-/*   Updated: 2025/04/09 21:27:37 by imatek           ###   ########.fr       */
+/*   Updated: 2025/04/10 14:13:27 by imatek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,21 +52,21 @@ static void	ft_moves_ud(t_data *data)
 {
 	if (data->player.up)
 	{
-		if (data->map[(int)data->player.pos_x][(int)((data->player.pos_y
-					+ data->player.dir_y) * SPEED)])
-			data->player.pos_x += SPEED * data->player.dir_x;
-		if (data->map[(int)((data->player.pos_x + data->player.dir_x)
+		if (data->map[(int)data->player.pos_x][(int)(data->player.pos_y
+				+ data->player.dir_y * SPEED)])
+			data->player.pos_y += (SPEED * data->player.dir_y);
+		if (data->map[(int)(data->player.pos_x + data->player.dir_x
 				* SPEED)][(int)data->player.pos_y])
-			data->player.pos_y += SPEED * data->player.dir_y;
+			data->player.pos_x += (SPEED * data->player.dir_x);
 	}
 	if (data->player.down)
 	{
-		if (data->map[(int)data->player.pos_x][(int)((data->player.pos_y
-					+ data->player.dir_y) * SPEED)])
-			data->player.pos_x -= SPEED * data->player.dir_x;
-		if (data->map[(int)((data->player.pos_x + data->player.dir_x)
+		if (data->map[(int)data->player.pos_x][(int)(data->player.pos_y
+				- data->player.dir_y * SPEED)])
+			data->player.pos_y -= (SPEED * data->player.dir_y);
+		if (data->map[(int)(data->player.pos_x - data->player.dir_x
 				* SPEED)][(int)data->player.pos_y])
-			data->player.pos_y -= SPEED * data->player.dir_y;
+			data->player.pos_x -= (SPEED * data->player.dir_x);
 	}
 }
 
