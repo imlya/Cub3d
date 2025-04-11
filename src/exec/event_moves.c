@@ -6,7 +6,7 @@
 /*   By: imatek <imatek@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 11:48:45 by imatek            #+#    #+#             */
-/*   Updated: 2025/04/10 14:13:27 by imatek           ###   ########.fr       */
+/*   Updated: 2025/04/11 12:03:35 by imatek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,10 @@ static void	ft_moves_ud(t_data *data)
 	{
 		if (data->map[(int)data->player.pos_x][(int)(data->player.pos_y
 				+ data->player.dir_y * SPEED)])
-			data->player.pos_y += (SPEED * data->player.dir_y);
+			data->player.pos_y += (data->player.dir_y *SPEED);
 		if (data->map[(int)(data->player.pos_x + data->player.dir_x
 				* SPEED)][(int)data->player.pos_y])
-			data->player.pos_x += (SPEED * data->player.dir_x);
+			data->player.pos_x += (data->player.dir_x * SPEED);
 	}
 	if (data->player.down)
 	{
@@ -77,7 +77,7 @@ static void	ft_moves_lr(t_data *data)
 
 	old_dir_x = data->player.dir_x;
 	old_plane_x = data->player.plane_x;
-	if (data->player.right)
+	if (data->player.left)
 	{
 		data->player.dir_x = (data->player.dir_x * cos(-ROTSPEED))
 			- (data->player.dir_y * sin(-ROTSPEED));
@@ -88,7 +88,7 @@ static void	ft_moves_lr(t_data *data)
 		data->player.plane_y = (old_plane_x * sin(-ROTSPEED))
 			+ (data->player.plane_y * cos(-ROTSPEED));
 	}
-	if (data->player.left)
+	if (data->player.right)
 	{
 		data->player.dir_x = (data->player.dir_x * cos(ROTSPEED))
 			- (data->player.dir_y * sin(ROTSPEED));

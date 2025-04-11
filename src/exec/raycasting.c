@@ -6,7 +6,7 @@
 /*   By: imatek <imatek@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 12:35:47 by imatek            #+#    #+#             */
-/*   Updated: 2025/04/10 14:50:46 by imatek           ###   ########.fr       */
+/*   Updated: 2025/04/11 12:52:35 by imatek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,11 @@ static void	ft_set_step_and_side(t_data *data)
 
 static void	ft_ray_set(t_data *data, int i)
 {
-	data->ray.camera_x = 2 * i / ((double)WIDTH - 1);
-	data->ray.dir_x = data->player.dir_x + data->player.plane_x
-		* data->ray.camera_x;
-	data->ray.dir_y = data->player.dir_y + data->player.plane_y
-		* data->ray.camera_x;
+	data->ray.camera_x = (2 * i) / ((double)WIDTH - 1);
+	data->ray.dir_x = data->player.dir_x + (data->player.plane_x
+			* data->ray.camera_x);
+	data->ray.dir_y = data->player.dir_y + (data->player.plane_y
+			* data->ray.camera_x);
 	data->ray.map_x = (int)data->player.pos_x;
 	data->ray.map_y = (int)data->player.pos_y;
 	if (data->ray.dir_x == 0)
@@ -79,11 +79,11 @@ static void	ft_dda(t_data *data)
 			data->ray.map_y += data->ray.step_y;
 			data->ray.wall_side = 1;
 		}
-		if (data->ray.map_x < 0 || data->ray.map_y < 0
-			|| data->ray.map_x >= data->height || data->ray.map_y >= data->width
-			|| data->map[data->ray.map_x][data->ray.map_y] == '1')
+		if (data->map[data->ray.map_x][data->ray.map_y] == '1')
 			hit = 1;
 	}
+	if (hit == 1)
+		return ;
 }
 
 static void	ft_wall_dist(t_data *data)

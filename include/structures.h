@@ -6,7 +6,7 @@
 /*   By: imatek <imatek@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 11:23:59 by imatek            #+#    #+#             */
-/*   Updated: 2025/04/10 11:29:06 by imatek           ###   ########.fr       */
+/*   Updated: 2025/04/11 12:51:40 by imatek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@
 # define KEY_D 100
 # define KEY_RIGHT 65363
 # define KEY_LEFT 65361
-# define MINISIZE 200
 # define TILE_SIZE 10
 
 # define SPEED 0.06
@@ -38,7 +37,6 @@ typedef enum s_dir
 	SOUTH,
 	EAST,
 	WEST,
-	MINI_MAP,
 }				t_dir;
 
 typedef struct s_pars

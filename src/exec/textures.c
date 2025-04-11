@@ -6,7 +6,7 @@
 /*   By: imatek <imatek@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 12:54:43 by imatek            #+#    #+#             */
-/*   Updated: 2025/04/10 14:08:56 by imatek           ###   ########.fr       */
+/*   Updated: 2025/04/11 11:11:38 by imatek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,20 +17,14 @@ void	ft_set_texture(t_data *data, int x)
 	int	color;
 	int	y;
 
-	if (data->ray.wall_side == 0)
-	{
-		if (data->ray.dir_x > 0)
-			data->texture = &data->img[NORTH];
-		else
-			data->texture = &data->img[SOUTH];
-	}
+	if (data->ray.wall_side == 0 && data->ray.dir_x > 0)
+		data->texture = &data->img[NORTH];
 	else
-	{
-		if (data->ray.dir_y > 0)
-			data->texture = &data->img[EAST];
-		else
-			data->texture = &data->img[WEST];
-	}
+		data->texture = &data->img[SOUTH];
+	if (data->ray.wall_side == 1 && data->ray.dir_y > 0)
+		data->texture = &data->img[EAST];
+	else
+		data->texture = &data->img[WEST];
 	if (data->ray.wall_side == 0)
 		data->ray.wall_x = data->player.pos_y + (data->ray.perpwalldist
 				* data->ray.dir_y);
