@@ -6,7 +6,7 @@
 /*   By: imatek <imatek@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 12:35:47 by imatek            #+#    #+#             */
-/*   Updated: 2025/04/11 12:52:35 by imatek           ###   ########.fr       */
+/*   Updated: 2025/04/14 00:45:46 by imatek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,11 +79,11 @@ static void	ft_dda(t_data *data)
 			data->ray.map_y += data->ray.step_y;
 			data->ray.wall_side = 1;
 		}
-		if (data->map[data->ray.map_x][data->ray.map_y] == '1')
+		if (data->ray.map_x < 0 || data->ray.map_y < 0
+			|| data->ray.map_x >= data->height || data->ray.map_y >= data->width
+			|| data->map[data->ray.map_y][data->ray.map_x] > '0')
 			hit = 1;
 	}
-	if (hit == 1)
-		return ;
 }
 
 static void	ft_wall_dist(t_data *data)

@@ -6,7 +6,7 @@
 /*   By: imatek <imatek@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 18:47:02 by imatek            #+#    #+#             */
-/*   Updated: 2025/04/11 11:42:12 by imatek           ###   ########.fr       */
+/*   Updated: 2025/04/14 01:01:26 by imatek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,9 @@ static void	ft_E_face(t_data *data)
 
 void	ft_set_player(t_data *data)
 {
-	int	i;
+	int		i;
 	size_t	j;
-	int	len;
+	int		len;
 
 	i = 0;
 	len = 0;
@@ -71,15 +71,19 @@ void	ft_set_player(t_data *data)
 		while (j < ft_strlen(&data->map[i][j]))
 		{
 			data->player.pos_x = data->pars->player_x + 0.5;
-			data->player.pos_y = data->pars->player_y + 0.5;
 			j++;
 		}
+		data->player.pos_y = data->pars->player_y + 0.5;
 		i++;
 	}
-	ft_S_face(data);
-	ft_E_face(data);
-	ft_N_face(data);
-	ft_W_face(data);
+	if (data->facing == 'N')
+		ft_N_face(data);
+	else if (data->facing == 'S')
+		ft_S_face(data);
+	else if (data->facing == 'W')
+		ft_W_face(data);
+	else if (data->facing == 'E')
+		ft_E_face(data);
 }
 
 void	ft_init_player(t_data *data)

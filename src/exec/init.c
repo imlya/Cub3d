@@ -6,7 +6,7 @@
 /*   By: imatek <imatek@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 16:18:32 by imatek            #+#    #+#             */
-/*   Updated: 2025/04/10 13:12:34 by imatek           ###   ########.fr       */
+/*   Updated: 2025/04/13 20:47:12 by imatek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ void	ft_init_img(t_data *data)
 		if (!data->img[i].img)
 		{
 			ft_putendl_fd("create img failed", 2);
+			ft_destroy(data);
 			exit(EXIT_FAILURE);
 		}
 		i++;

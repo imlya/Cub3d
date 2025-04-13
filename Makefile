@@ -1,44 +1,98 @@
-CC = cc
-CFLAGS = -Wall -Wextra -Werror -I. -g3 -MMD
-LIBFLAGS = -L./libft/ -lft
-MLXFLAGS = -L/opt/X11/lib -Lmlx -lm -lX11 -lXext -lXrandr -lXi
-MLXLIB = minilibx-linux/libmlx.a
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: magrabko <magrabko@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2025/02/11 12:34:41 by magrabko          #+#    #+#              #
+#    Updated: 2025/04/13 16:33:13 by magrabko         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
 
-SRC = $(wildcard src/*.c src/parsing/*.c src/exec/*.c)
+NAME=			cub3D
 
-OBJ_DIR = obj
-OBJ = $(SRC:%.c=$(OBJ_DIR)/%.o)
-DEP = $(OBJ:.o=.d)
+CFLAGS= 		-Wall -Wextra -Werror -g3
+INCLD=  		-I ./include/ -I ./minilibx-linux/
 
-LIBFT_PATH = ./libft/
-LIBFT = $(LIBFT_PATH)libft.a
+CYAN=                           \033[1;36m
+GREEN=                          \033[1;32m
+RESET=                          \033[0m
 
-NAME = cub3D
-NAME_BONUS = cub3D_bonus
-$(OBJ_DIR)/%.o: %.c
-	@mkdir -p $(dir $@)
-	$(CC) $(CFLAGS) -c $< -o $@
+SRC_PATH= 		src
+SRC_FILES=		main.c cleanup.c												\
 
-all: $(NAME)
+PARS_PATH=		src/parsing
+PARS_FILES=		checks_utils.c checks.c elem_utils.c flood_fill.c init_data.c	\
+				map_utils.c pars_utils.c string_utils.c							\
 
-$(MLXLIB):
-	make -j4 -C minilibx-linux
+EXEC_PATH=		src/exec
+EXEC_FILES=		draw.c event_moves.c events.c game.c init.c minimap.c player.c	\
+				raycasting.c textures.c							 				\
 
-$(NAME): $(OBJ) $(MLXLIB) $(LIBFT)
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJ) $(MLXFLAGS) $(MLXLIB) $(LIBFLAGS)
+LIBFT_PATH=    	./libft
+MLX_PATH=		./minilibx-linux
+
+LIBFT_FLAGS=	-L$(LIBFT_PATH) -lft
+MLX_FLAGS =		-L$(MLX_PATH) -lmlx -lXext -lX11 -lm
+
+LIBFT=        	$(LIBFT_PATH)/libft.a
+MLX=			$(MLX_PATH)/libmlx.a
+
+SRC=			$(SRC_PATH)/$(SRC_FILES)	\
+				$(PARS_PATH)/$(PARS_FILES)	\
+				$(EXEC_PATH)/$(EXEC_FILES)	\
+
+OBJ_PATH= 		obj
+OBJ= 			$(addprefix $(OBJ_PATH)/, $(notdir $(SRC:.c=.o)))
+
+NOPRINT=		--no-print-directory
+
+all: $(MLX) $(LIBFT) $(NAME)
+
+$(OBJ_PATH):
+	@mkdir $(OBJ_PATH)
+
+$(OBJ_PATH)/%.o: $(SRC_PATH)/%.c | $(OBJ_PATH)
+	@$(CC) $(CFLAGS) $(INCLD) -c $< -o $@
+
+$(OBJ_PATH)/%.o: $(PARS_PATH)/%.c | $(OBJ_PATH)
+	@$(CC) $(CFLAGS) $(INCLD) -c $< -o $@
+
+$(OBJ_PATH)/%.o: $(EXEC_PATH)/%.c | $(OBJ_PATH)
+	@$(CC) $(CFLAGS) $(INCLD) -c $< -o $@
+
+$(MLX):
+	@$(MAKE) -s $(NOPRINT) -C $(MLX_PATH) > /dev/null 2>&1
 
 $(LIBFT):
-	$(MAKE) -j4 -C $(LIBFT_PATH)
+	@$(MAKE) $(NOPRINT) -C $(LIBFT_PATH)
 
--include $(DEP)
+$(NAME): $(OBJ) $(MLX) $(LIBFT)
+	@$(CC) $(OBJ) -o $(NAME) $(MLX_FLAGS) $(LIBFT_FLAGS)
+	@printf "\n${CYAN}"
+	@printf "  ░█▀▀░█░█░█▀▄░▀▀█░█▀▄\n"
+	@printf "  ░█░░░█░█░█▀▄░░▀▄░█░█\n"
+	@printf "  ░▀▀▀░▀▀▀░▀▀░░▀▀░░▀▀░\n"
+	@printf "\n\n${RESET}"
 
 clean:
-	rm -rf $(OBJ_DIR)
-	make -C $(LIBFT_PATH) fclean
+	@rm -rf $(OBJ_PATH)
+	@$(MAKE) $(NOPRINT) -C $(LIBFT_PATH) clean
+	@$(MAKE) $(NOPRINT) -C $(MLX_PATH) clean > /dev/null
+	@printf "\n\n${GREEN}"
+	@printf "  ░█▀▀░█░░░█▀▀░█▀█░█▀█░█░█░█▀█░░█\n"
+	@printf "  ░█░░░█░░░█▀▀░█▀█░█░█░█░█░█▀▀░░▀\n"
+	@printf "  ░▀▀▀░▀▀▀░▀▀▀░▀░▀░▀░▀░▀▀▀░▀░░░░▀\n"
+	@printf "\n\n${RESET}"
 
 fclean: clean
-	rm -f $(NAME)
+	@rm -rf $(NAME)
+	@$(MAKE) $(NOPRINT) -C $(LIBFT_PATH) fclean
 
 re: fclean all
 
-.PHONY: all clean fclean re
+copy_mlx:
+		@cp -r ~/Documents/minilibx-linux minilibx-linux
+
+.PHONY: all clean fclean re input

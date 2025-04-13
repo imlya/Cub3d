@@ -6,7 +6,7 @@
 /*   By: imatek <imatek@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 16:20:26 by magrabko          #+#    #+#             */
-/*   Updated: 2025/04/10 13:40:14 by imatek           ###   ########.fr       */
+/*   Updated: 2025/04/13 19:59:40 by imatek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,20 +80,29 @@ void	free_assets(t_data *data)
 	free_ptr((void **)&data->assets);
 }
 
-void	free_all(t_data *data)
+void    free_all(t_data *data)
 {
-	if (data->f_color != NULL)
-		free_ptr((void **)&data->f_color);
-	if (data->c_color != NULL)
-		free_ptr((void **)&data->c_color);
-	if (data->map != NULL)
-		free_tab(&data->map);
-	if (data->pars != NULL)
-	{
-		free_ptr((void **)&data->pars->file);
-		free_ptr((void **)&data->pars->line);
-		free_tab(&data->pars->rgb);
-		free_tab(&data->pars->map_check);
-		free_ptr((void **)&data->pars);
-	}
+    if (data->f_color != NULL)
+        free_ptr((void **)&data->f_color);
+    if (data->c_color != NULL)
+        free_ptr((void **)&data->c_color);
+    if (data->north)
+        free_ptr((void **)&data->north);
+    if (data->south)
+        free_ptr((void **)&data->south);
+    if (data->east)
+        free_ptr((void **)&data->east);
+    if (data->west)
+        free_ptr((void **)&data->west);
+    if (data->map != NULL)
+        free_tab(&data->map);
+    if (data->pars != NULL)
+    {
+        free_ptr((void **)&data->pars->file);
+        free_ptr((void **)&data->pars->line);
+        free_tab(&data->pars->rgb);
+        free_tab(&data->pars->map_check);
+        free_ptr((void **)&data->pars);
+    }
+    free_ptr((void **)&data->assets);
 }

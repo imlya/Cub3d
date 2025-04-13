@@ -3,33 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   structures.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: imatek <imatek@student.42.fr>              +#+  +:+       +#+        */
+/*   By: magrabko <magrabko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 11:23:59 by imatek            #+#    #+#             */
-/*   Updated: 2025/04/11 12:51:40 by imatek           ###   ########.fr       */
+/*   Updated: 2025/04/12 11:20:55 by magrabko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCTURES_H
 # define STRUCTURES_H
-
-# include <stdbool.h>
-
-# define WIDTH 640
-# define HEIGHT 480
-# define TEXTURE_SIZE 64
-
-# define KEY_ESC 65307
-# define KEY_W 119
-# define KEY_A 97
-# define KEY_S 115
-# define KEY_D 100
-# define KEY_RIGHT 65363
-# define KEY_LEFT 65361
-# define TILE_SIZE 10
-
-# define SPEED 0.06
-# define ROTSPEED 0.02
 
 typedef enum s_dir
 {

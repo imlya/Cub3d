@@ -6,7 +6,7 @@
 /*   By: imatek <imatek@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 10:58:58 by imatek            #+#    #+#             */
-/*   Updated: 2025/04/11 11:41:09 by imatek           ###   ########.fr       */
+/*   Updated: 2025/04/13 20:16:52 by imatek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ int	ft_destroy(t_data *data)
 		}
 		i++;
 	}
-	if (data->assets) // Libérer les autres ressources
-		free_assets(data);
+	// if (data->assets) // Libérer les autres ressources
+	// 	free_assets(data);
 	if (data->window)
 	{
 		mlx_destroy_window(data->mlx_ptr, data->window);
@@ -49,6 +49,7 @@ int	ft_loop(t_data *data)
 	ft_draw_background(data);
 	ft_raycasting(data);
 	ft_moves(data);
+	ft_draw_minimap(data);
 	mlx_put_image_to_window(data->mlx_ptr, data->window, data->img[4].img, 0,
 		0);
 	return (0);

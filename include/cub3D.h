@@ -3,19 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: imatek <imatek@student.42.fr>              +#+  +:+       +#+        */
+/*   By: magrabko <magrabko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 14:02:07 by magrabko          #+#    #+#             */
-/*   Updated: 2025/04/10 12:53:58 by imatek           ###   ########.fr       */
+/*   Updated: 2025/04/13 15:20:57 by magrabko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# include "../libft/libft.h"
-# include "../minilibx-linux/mlx.h"
-# include "parsing.h"
 # include <X11/X.h>
 # include <X11/keysym.h>
 # include <errno.h>
@@ -27,6 +24,14 @@
 # include <stdlib.h>
 # include <string.h>
 # include <unistd.h>
+# include <stdint.h>
+
+# include "../libft/libft.h"
+# include "../minilibx-linux/mlx.h"
+
+# include "defines.h"
+# include "structures.h"
+# include "parsing.h"
 
 /*******************************************
  *                  EXEC                    *
@@ -54,6 +59,7 @@ int		ft_destroy(t_data *data);
  ********************************************/
 void	ft_put_pixel(t_data *data, int x, int y, int color);
 void	ft_draw_background(t_data *data);
+void	ft_draw_minimap(t_data *data);
 
 // void	ft_add_texture(t_data *data, int i);
 

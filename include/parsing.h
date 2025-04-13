@@ -3,31 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: imatek <imatek@student.42.fr>              +#+  +:+       +#+        */
+/*   By: magrabko <magrabko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 14:17:48 by magrabko          #+#    #+#             */
-/*   Updated: 2025/04/09 16:08:38 by imatek           ###   ########.fr       */
+/*   Updated: 2025/04/12 11:23:42 by magrabko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSING_H
 # define PARSING_H
-
-# include "structures.h"
-
-# define BUFFER_SIZE 1
-# define ALL_SPACES " \t\n\v\f\r"
-# define FIRST_C 0
-# define LAST_C 1
-# define ARGC_MSG "Error: try ./cub3D map.cub\n"
-# define ERR_EXT_MSG "Error: wrong file extension, use a .cub file.\n"
-# define ERR_EMPTY_MSG "Map: no empty lines allowed.\n"
-# define ERR_COLOR_MSG "(F) and (C) colors must be in R,G,B format (0-255).\n"
-# define ERR_ELEM_MSG "Error: invalid element in file.\n"
-# define ERR_WALL_MSG "Error: map must be surrounded by walls (1).\n"
-# define ERR_PLAYER_MSG "Map: only one player allowed.\n"
-# define ERR_MISS_MSG "Missing elements in file.\n"
-# define ERR_ITEM_MSG "Error: item conditions not met.\n"
 
 /* STRUCT INIT */
 void	init_data(t_data *data);
