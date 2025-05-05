@@ -6,11 +6,11 @@
 /*   By: imatek <imatek@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 11:42:30 by imatek            #+#    #+#             */
-/*   Updated: 2025/04/13 21:27:49 by imatek           ###   ########.fr       */
+/*   Updated: 2025/04/24 13:30:19 by imatek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/cub3D.h"
+#include "cub3D.h"
 
 void	ft_put_pixel(t_data *data, int x, int y, int color)
 {
@@ -39,7 +39,7 @@ void	ft_draw_background(t_data *data)
 		y = 0;
 		while (y < HEIGHT)
 		{
-			if (y < HEIGHT / 2)
+			if (y <= HEIGHT / 2)
 				ft_put_pixel(data, x, y, convert_rgb(data->c_color[0],
 						data->c_color[1], data->c_color[2]));
 			else

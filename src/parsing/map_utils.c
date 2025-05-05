@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   map_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: imatek <imatek@student.42.fr>              +#+  +:+       +#+        */
+/*   By: magrabko <magrabko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 15:09:35 by magrabko          #+#    #+#             */
-/*   Updated: 2025/04/13 20:27:02 by imatek           ###   ########.fr       */
+/*   Updated: 2025/04/28 13:29:38 by magrabko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/cub3D.h"
+#include "cub3D.h"
 
-static void	reset_maps(t_data *data, int i, int j)
+int	reset_maps(t_data *data, int i, int j)
 {
 	free_tab(&data->pars->map_check);
 	data->pars->map_check = ft_calloc((data->height + 1), sizeof(char *));
@@ -25,19 +25,18 @@ static void	reset_maps(t_data *data, int i, int j)
 	}
 	data->pars->map_check[i] = NULL;
 	i = 0;
-	while (data->map[i] && data->pars->map_check[i])
+	while (data->map[i])
 	{
-		while (data->map[i][j] && data->pars->map_check[i][j])
+		j = 0;
+		while (data->map[i][j])
 		{
-			if (is_c_inset(data->map[i][j], "\t\n\v\f\r"))
-			{
-				data->map[i][j] = ' ';
-				data->pars->map_check[i][j] = ' ';
-			}
+			if (is_c_inset(data->map[i][j], W_SPACES))
+				return (0);
 			j++;
 		}
 		i++;
 	}
+	return (1);
 }
 
 static int	get_map_size(t_data *data, char **map_check, int *i)
@@ -75,7 +74,10 @@ int	fill_map_game(t_data *data, int i)
 	while (data->pars->map_check[i])
 	{
 		if (is_line_empty(data->pars->map_check[i]))
-			return (data->map[j] = NULL, go_end_map(data, i));
+		{
+			data->map[j] = NULL;
+			return (go_end_map(data, i));
+		}
 		data->map[j] = ft_calloc((data->width + 1), sizeof(char));
 		check_alloc(data->map[j], data);
 		data->map[j][data->width] = '\0';
@@ -84,7 +86,6 @@ int	fill_map_game(t_data *data, int i)
 		ft_memcpy(data->map[j++], data->pars->map_check[i++], len);
 	}
 	data->map[j] = NULL;
-	reset_maps(data, 0, 0);
 	return (1);
 }
 
@@ -112,11 +113,6 @@ static char	**add_to_map(t_data *data, char *line)
 	return (new_map);
 }
 
-/*
-**	manage_file function,
-**	'O' to open the file
-** 	'C' to close the file.
-*/
 int	fill_map_check(t_data *data)
 {
 	while (data->pars->fd_map > 0)

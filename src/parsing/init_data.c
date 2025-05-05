@@ -3,32 +3,40 @@
 /*                                                        :::      ::::::::   */
 /*   init_data.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: imatek <imatek@student.42.fr>              +#+  +:+       +#+        */
+/*   By: magrabko <magrabko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 16:06:24 by magrabko          #+#    #+#             */
-/*   Updated: 2025/04/10 11:00:46 by imatek           ###   ########.fr       */
+/*   Updated: 2025/04/28 19:59:44 by magrabko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/cub3D.h"
+#include "cub3D.h"
 
-void	init_assets(t_data *data)
+static	void	init_door(t_data *data)
 {
-	data->assets = ft_calloc(1, sizeof(t_assets));
-	check_alloc(data->assets, data);
-	data->assets->w_north = NULL;
-	data->assets->w_south = NULL;
-	data->assets->w_west = NULL;
-	data->assets->w_east = NULL;
-	data->assets->sky = NULL;
-	data->assets->floor = NULL;
-	data->assets->door = NULL;
-	data->assets->donut = NULL;
-	data->assets->effect = NULL;
-	data->assets->hand = NULL;
+	data->door.frame[DOOR].img = NULL;
+	data->door.frame[DOOR].pixels = NULL;
+	data->door.frame[DOOR].path = NULL;
+	data->door.current_pos = 0;
+	data->door.is_open = false;
 }
 
-void	init_img(t_data *data)
+static	void	init_hand(t_data *data)
+{
+	int	i;
+
+	i = 0;
+	while (i < 4)
+	{
+		data->hand.frame[i].img = NULL;
+		data->hand.frame[i].pixels = NULL;
+		data->hand.frame[i].path = NULL;
+		i++;
+	}
+	data->hand.time_frame = 0;
+}
+
+static	void	init_img(t_data *data)
 {
 	int	i;
 
@@ -36,14 +44,17 @@ void	init_img(t_data *data)
 	while (i < 5)
 	{
 		data->img[i].img = NULL;
+		data->img[i].pixels = NULL;
 		data->img[i].path = NULL;
 		i++;
 	}
-	data->minimap.img = NULL;
+	init_hand(data);
+	init_door(data);
 }
 
-void	init_pars(t_data *data)
+static	void	init_pars(t_data *data)
 {
+	data->pars->line = NULL;
 	data->pars->x = 0;
 	data->pars->y = 0;
 	data->pars->player_x = 0;
@@ -51,23 +62,23 @@ void	init_pars(t_data *data)
 	data->pars->fd_map = -1;
 	data->pars->rgb = NULL;
 	data->pars->map_check = NULL;
-	data->pars->line = NULL;
 }
 
 void	init_data(t_data *data)
 {
+	data->mlx_ptr = NULL;
+	data->window = NULL;
+	init_img(data);
+	data->texture = NULL;
 	data->map = NULL;
 	data->height = 0;
 	data->width = 0;
+	data->facing = 0;
 	data->f_color = NULL;
 	data->c_color = NULL;
 	data->north = NULL;
 	data->south = NULL;
 	data->west = NULL;
 	data->east = NULL;
-	data->texture = NULL;
-	data->facing = 0;
 	init_pars(data);
-	init_img(data);
-	init_assets(data);
 }

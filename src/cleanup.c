@@ -6,11 +6,17 @@
 /*   By: imatek <imatek@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 16:20:26 by magrabko          #+#    #+#             */
-/*   Updated: 2025/04/13 19:59:40 by imatek           ###   ########.fr       */
+/*   Updated: 2025/04/27 20:21:06 by imatek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3D.h"
+#include "cub3D.h"
+
+void	err_exit(char *str)
+{
+	ft_printf_fd(2, str);
+	exit(EXIT_FAILURE);
+}
 
 void	free_ptr(void **ptr)
 {
@@ -36,73 +42,34 @@ void	free_tab(char ***tab)
 	free_ptr((void **)tab);
 }
 
-void	destroy_texture(t_data *data, t_img*texture, int i, int n)
+void	destroy_mlx(t_data *data)
 {
-	if (n == 1)
+	if (data->window)
 	{
-		free_ptr((void **)&texture->pixels);
-		mlx_destroy_image(data->mlx_ptr, texture->img);
-		texture->img = NULL;
+		mlx_destroy_window(data->mlx_ptr, data->window);
+		data->window = NULL;
 	}
-	else if (n == 4)
+	if (data->mlx_ptr)
 	{
-		while (i < n)
-		{
-			free_ptr((void **)&data->assets->hand->frames[i].pixels);
-			mlx_destroy_image(data->mlx_ptr, data->assets->hand->frames[i].img);
-			data->assets->hand->frames[i++].img = NULL;
-		}
-	}
-	else if (n == 11)
-	{
-		while (i < n)
-		{
-			free_ptr((void **)&data->assets->effect->frames[i].pixels);
-			mlx_destroy_image(data->mlx_ptr,
-				data->assets->effect->frames[i].img);
-			data->assets->effect->frames[i++].img = NULL;
-		}
+		mlx_destroy_display(data->mlx_ptr);
+		free(data->mlx_ptr);
+		data->mlx_ptr = NULL;
 	}
 }
 
-void	free_assets(t_data *data)
+void	destroy_all(t_data *data)
 {
-	destroy_texture(data, data->assets->w_north, 0, 1);
-	destroy_texture(data, data->assets->w_south, 0, 1);
-	destroy_texture(data, data->assets->w_west, 0, 1);
-	destroy_texture(data, data->assets->w_east, 0, 1);
-	destroy_texture(data, data->assets->sky, 0, 1);
-	destroy_texture(data, data->assets->floor, 0, 1);
-	destroy_texture(data, data->assets->door, 0, 1);
-	destroy_texture(data, data->assets->donut, 0, 1);
-	destroy_texture(data, NULL, 0, 4);
-	destroy_texture(data, NULL, 0, 11);
-	free_ptr((void **)&data->assets);
-}
+	int	i;
 
-void    free_all(t_data *data)
-{
-    if (data->f_color != NULL)
-        free_ptr((void **)&data->f_color);
-    if (data->c_color != NULL)
-        free_ptr((void **)&data->c_color);
-    if (data->north)
-        free_ptr((void **)&data->north);
-    if (data->south)
-        free_ptr((void **)&data->south);
-    if (data->east)
-        free_ptr((void **)&data->east);
-    if (data->west)
-        free_ptr((void **)&data->west);
-    if (data->map != NULL)
-        free_tab(&data->map);
-    if (data->pars != NULL)
-    {
-        free_ptr((void **)&data->pars->file);
-        free_ptr((void **)&data->pars->line);
-        free_tab(&data->pars->rgb);
-        free_tab(&data->pars->map_check);
-        free_ptr((void **)&data->pars);
-    }
-    free_ptr((void **)&data->assets);
+	i = 0;
+	while (i < 5)
+	{
+		if (data->img[i].img)
+		{
+			mlx_destroy_image(data->mlx_ptr, data->img[i].img);
+			data->img[i].img = NULL;
+		}
+		i++;
+	}
+	destroy_mlx(data);
 }

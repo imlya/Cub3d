@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   flood_fill.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: imatek <imatek@student.42.fr>              +#+  +:+       +#+        */
+/*   By: magrabko <magrabko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 15:16:19 by magrabko          #+#    #+#             */
-/*   Updated: 2025/04/11 09:58:34 by imatek           ###   ########.fr       */
+/*   Updated: 2025/04/28 12:42:08 by magrabko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/cub3D.h"
+#include "cub3D.h"
 
 static void	flood_fill(t_data *data, int i, int j)
 {
@@ -25,11 +25,20 @@ static void	flood_fill(t_data *data, int i, int j)
 	flood_fill(data, i, j + 1);
 }
 
+static bool	is_player_on_map(t_data *data)
+{
+	if (!data->pars->player_x && !data->pars->player_y)
+		return (false);
+	return (true);
+}
+
 int	check_path(t_data *data)
 {
 	int	i;
 	int	j;
 
+	if (!is_player_on_map(data))
+		return (0);
 	flood_fill(data, data->pars->player_y, data->pars->player_x);
 	i = 0;
 	while (data->pars->map_check[i])

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   pars_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: imatek <imatek@student.42.fr>              +#+  +:+       +#+        */
+/*   By: magrabko <magrabko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 16:29:07 by magrabko          #+#    #+#             */
-/*   Updated: 2025/04/05 00:18:08 by imatek           ###   ########.fr       */
+/*   Updated: 2025/04/28 17:18:10 by magrabko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/cub3D.h"
+#include "cub3D.h"
 
 void	err_free_exit(char *str, t_data *data)
 {
@@ -20,9 +20,9 @@ void	err_free_exit(char *str, t_data *data)
 	{
 		if (data->pars && data->pars->fd_map != -1)
 			manage_file(data, 'C');
-		free_all(data);
+		free_all(data, NO_DESTROY);
 	}
-	exit(1);
+	exit(EXIT_FAILURE);
 }
 
 void	check_alloc(void *ptr, t_data *data)

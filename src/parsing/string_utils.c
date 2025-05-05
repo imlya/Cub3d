@@ -6,11 +6,11 @@
 /*   By: imatek <imatek@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 15:31:30 by magrabko          #+#    #+#             */
-/*   Updated: 2025/04/01 17:08:10 by imatek           ###   ########.fr       */
+/*   Updated: 2025/04/27 21:02:39 by imatek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/cub3D.h"
+#include "cub3D.h"
 
 void	pass_spaces(char *str, int *index)
 {

@@ -1,5 +1,0 @@
-RESTE A FAIRE EXEC :
-
-- rectifier les mouvements up & down pour que ce ne soit plus en diagonal
-- les rotates
-du hit et du destroy

@@ -6,19 +6,27 @@
 /*   By: magrabko <magrabko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 11:23:59 by imatek            #+#    #+#             */
-/*   Updated: 2025/04/12 11:20:55 by magrabko         ###   ########.fr       */
+/*   Updated: 2025/04/28 19:30:07 by magrabko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCTURES_H
 # define STRUCTURES_H
 
+typedef enum s_hand
+{
+	HAND1 = 0,
+	HAND2 = 1,
+	HAND3 = 2,
+	HAND4 = 3,
+}				t_hand;
+
 typedef enum s_dir
 {
-	NORTH,
-	SOUTH,
-	EAST,
-	WEST,
+	NORTH = 0,
+	SOUTH = 1,
+	EAST = 2,
+	WEST = 3,
 }				t_dir;
 
 typedef struct s_pars
@@ -34,6 +42,13 @@ typedef struct s_pars
 	char		**map_check;
 }				t_pars;
 
+typedef struct s_radar
+{
+	float		tile_x;
+	float		tile_y;
+	float		tile;
+}				t_radar;
+
 typedef struct s_img
 {
 	void		*img;
@@ -46,34 +61,6 @@ typedef struct s_img
 	int			height;
 
 }				t_img;
-
-typedef struct s_hand
-{
-	t_img		frames[4];
-	double		delay;
-	int			current_frame;
-}				t_hand;
-
-typedef struct s_effect
-{
-	t_img		frames[11];
-	double delay;      //! oldtime ?
-	int current_frame; //! current_time ?
-}				t_effect;
-
-typedef struct s_assets
-{
-	t_img		*w_north;
-	t_img		*w_south;
-	t_img		*w_west;
-	t_img		*w_east;
-	t_img		*sky;
-	t_img		*floor;
-	t_img		*door;
-	t_img		*donut;
-	t_effect	*effect;
-	t_hand		*hand;
-}				t_assets;
 
 typedef struct s_player
 {
@@ -89,6 +76,7 @@ typedef struct s_player
 	bool		left;
 	bool		rotate_left;
 	bool		rotate_right;
+	bool		espace;
 }				t_player;
 
 typedef struct s_ray
@@ -116,13 +104,25 @@ typedef struct s_ray
 	int			tex_y;
 }				t_ray;
 
+typedef struct s_sprite
+{
+	t_img		frame[4];
+	int			time_frame;
+}				t_sprite;
+
+typedef struct s_door
+{
+	t_img		frame[1];
+	char		current_pos;
+	bool		is_open;
+}				t_door;
+
 typedef struct s_data
 {
 	void		*mlx_ptr;
 	void		*window;
 	t_img		img[5];
 	t_img		*texture;
-	t_img		minimap;
 	char		**map;
 	int			height;
 	int			width;
@@ -134,9 +134,11 @@ typedef struct s_data
 	char		*west;
 	char		*east;
 	t_pars		*pars;
-	t_assets	*assets;
+	t_radar		radar;
 	t_player	player;
 	t_ray		ray;
+	t_sprite	hand;
+	t_door		door;
 }				t_data;
 
 #endif

@@ -3,31 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   checks_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: imatek <imatek@student.42.fr>              +#+  +:+       +#+        */
+/*   By: magrabko <magrabko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 17:09:20 by magrabko          #+#    #+#             */
-/*   Updated: 2025/04/09 13:03:02 by imatek           ###   ########.fr       */
+/*   Updated: 2025/04/29 20:13:20 by magrabko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/cub3D.h"
+#include "cub3D.h"
 
 int	is_open(char **map, char op, int i, int j)
 {
 	if (op == '&')
 	{
-		if ((!map[i][j + 1] || is_c_inset(map[i][j + 1], ALL_SPACES)) && (j
-				- 1 < 0 || is_c_inset(map[i][j - 1], ALL_SPACES)) && (!map[i
-				+ 1] || is_c_inset(map[i + 1][j], ALL_SPACES)) && (i - 1 < 0
-				|| is_c_inset(map[i - 1][j], ALL_SPACES)))
+		if ((!map[i][j + 1] || map[i][j + 1] == ' ')
+			&& (j - 1 < 0 || map[i][j - 1] == ' ')
+			&& (!map[i + 1] || map[i + 1][j] == ' ')
+			&& (i - 1 < 0 || map[i - 1][j] == ' '))
 			return (0);
 	}
 	else if (op == '|')
 	{
-		if ((!map[i][j + 1] || is_c_inset(map[i][j + 1], ALL_SPACES)) || (j
-				- 1 < 0 || is_c_inset(map[i][j - 1], ALL_SPACES)) || (!map[i
-				+ 1] || is_c_inset(map[i + 1][j], ALL_SPACES)) || (i - 1 < 0
-				|| is_c_inset(map[i - 1][j], ALL_SPACES)))
+		if ((!map[i][j + 1] || map[i][j + 1] == ' ')
+			|| (j - 1 < 0 || map[i][j - 1] == ' ')
+			|| (!map[i + 1] || map[i + 1][j] == ' ')
+			|| (i - 1 < 0 || map[i - 1][j] == ' '))
 			return (0);
 	}
 	return (1);
@@ -66,17 +66,17 @@ int	get_element(t_data *data, char *line, int n)
 	char	*temp;
 
 	temp = NULL;
-	if (ft_strnstr(line, "NO", n) && !data->north)
+	if (is_key_valid(line, "NO") && !data->north)
 		temp = ft_strnstr(line, "NO", n);
-	else if (ft_strnstr(line, "SO", n) && !data->south)
+	else if (is_key_valid(line, "SO") && !data->south)
 		temp = ft_strnstr(line, "SO", n);
-	else if (ft_strnstr(line, "WE", n) && !data->west)
+	else if (is_key_valid(line, "WE") && !data->west)
 		temp = ft_strnstr(line, "WE", n);
-	else if (ft_strnstr(line, "EA", n) && !data->east)
+	else if (is_key_valid(line, "EA") && !data->east)
 		temp = ft_strnstr(line, "EA", n);
-	else if (ft_strnstr(line, "F", n) && !data->f_color)
+	else if (is_key_valid(line, "F")&& !data->f_color)
 		temp = ft_strnstr(line, "F", n);
-	else if (ft_strnstr(line, "C", n) && !data->c_color)
+	else if (is_key_valid(line, "C")&& !data->c_color)
 		temp = ft_strnstr(line, "C", n);
 	else if (temp == NULL)
 		return (0);
